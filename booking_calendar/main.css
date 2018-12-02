@@ -1,0 +1,195 @@
+
+/****************************************************
+*			BASE ELEMENTS
+****************************************************/
+
+body {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	margin-bottom : 0px;
+	margin-left : 0px;
+	margin-right : 0px;
+	margin-top : 0px;
+	max-width : 0px;
+	max-height : 0px;
+}
+a:link { color : #000099; }
+a:visited { color : #000099; }
+a:active { color : #0000ff; }
+a:hover { color : #0000ff; }
+
+p {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+}
+td {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+}
+th {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	font-weight : bold;
+}
+h1 {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-size : 19px;
+	color : #0e3460;
+	text-align: center;
+}
+h2 {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-size : 17px;
+	color : #0e3460;
+	text-align: center;
+}
+h3 {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-size : 15px;
+	color : #0e3460;
+}
+h4 {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-size : 13px;
+	color : #0e3460;
+}
+em {
+	font-style : italic;
+}
+strong {
+	font-weight : bold;
+}
+
+abbr, acronym {
+	text-decoration : underline;
+}
+blockquote {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	margin-left : 15px;
+	margin-right : 15px;
+	text-align : left;
+	line-height : 20px;
+}
+ol, ul {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	line-height : 20px;
+}
+input, textarea, select {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+}
+
+code {
+	font-family : "Courier New", Courier, monospace;
+	font-size : 13px;
+	line-height : 20px;
+}
+img {
+	border: none;
+}
+form {
+	border: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/****************************************************
+*			BGCOLOR CLASSES
+****************************************************/
+
+.BgcolorBody {
+	background : #ffffff;
+}
+/* Used for dark nav bar headings */
+.BgcolorHard {
+	background : #0e3460;
+}
+/* Used as the primary table background color */
+.BgcolorNormal {
+	background : #8cb2fd;
+}
+/* Used for Mon-Fri Headings */
+.BgcolorBright {
+	background : #5454EA;
+}
+/* Used to show selected navigation */
+.BgcolorDull {
+	background : #7B8FDA;
+}
+/* Used for navigation headings */
+.BgcolorDull2 {
+	background : #5B89DD;
+}
+
+/****************************************************
+*			FONT CLASSES
+****************************************************/
+
+.FontHard {
+	color : #ffffff;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+}
+.FontHardSmall {
+	color : #ffffff;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+.FontSoft {
+	color : #000000;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+}
+.FontSoftSmall {
+	color : #000000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+}
+
+
+/****************************************************
+*			OTHER CLASSES
+****************************************************/
+
+.ButtonStyle {
+	cursor: hand;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	font-weight : normal;
+	color : #000000;
+	background :  #8cb2fd;
+}
+
+.ButtonStyleSmall {
+	cursor: hand;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : normal;
+	color : #000000;
+	background :  #8cb2fd;
+}
+
+.Warning {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	color : #ff0000;
+	vertical-align : middle;
+	font-weight : bold;
+}
+
+.SectionHeaderStyle {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	font-weight : bold;
+	color : #ffffff;
+	background : #0e3460;
+	text-align : left;
+	padding-right : 5px;
+	padding-left : 5px;
+}

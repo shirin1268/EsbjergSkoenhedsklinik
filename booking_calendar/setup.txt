@@ -1,0 +1,138 @@
+###########################################################
+
+phpBookingCalendar - Booking Calendar
+Copyright (C) 2004-2011 Jeffrey J. Walters
+
+Licensed under the terms of the GNU Lesser General Public License:
+http://www.opensource.org/licenses/lgpl-license.php
+
+For further information visit:
+http://www.jjwdesign.com/
+design@jjwdesign.com
+
+Version:  1.0e
+Modified: 2011-02-12
+Tested against: Apache 2, PHP 5.3.2, MySQL
+
+###########################################################
+
+Setup:
+
+Setup information & variables can be found in:
+
+includes/application_top.php
+
+The first thing you will notice about this file is the "testing"
+server settings.  These can be left alone, unless you wish to setup
+a testing server on your Win32 machine.  In that case I would 
+suggest looking towards WAMP5 to accomplish that task.  Otherwise,
+setup the Web server settings where appropriate.
+
+http://www.wampserver.com/en/
+
+Much of the 'includes/application_top.php' file is setup constants,
+which are already defined properly.  Web server and file server 
+paths are defined and PHP include paths are extended.
+
+MAIL_MYNAME and MAIL_MYEMAIL must be set for the Web server to 
+allow Sendmail to function properly.
+
+Make sure to properly set the SQL database connection constants:
+DB_SERVER, DB_SERVER_USERNAME, DB_SERVER_PASSWORD, DB_DATABASE
+Check with your Hosting Provider if you are not sure of your 
+database connection or how to setup a MySQL Database.
+
+Towards the bottom of the 'application_top.php' file are the 
+majority of the booking calendar settings.
+
+BOOKING_TIME_INTERVAL:
+
+This is an extremely important setting!!!!!!!
+Once set, it can not be modified.  I recommend setting the interval
+to either '30' or '15' (seconds).  This should suffice for most
+booking calendar situations.
+
+MIN_BOOKING_HOUR and MAX_BOOKING_HOUR
+
+These two settings are also extremely important! Once set, you can
+expand the range, but it has not been fully tested yet.  Reducing the
+range would be more challenging and is not yet supported.
+
+location_db_name
+
+This array provides the mapping between location key and the schedule
+MySQL DB table field name.  Is you add additional keys, make sure to 
+add the columns to the 'booking_schedule' table.
+
+location_display
+
+This array provides the mapping between location keys and the 
+display text to be used by the Booking Calendar.
+
+Requirements for authentication (login) and user settings can
+also be found at the end of this script.
+
+
+MySQL:
+
+Once you've defined the basic setup parameters it's time to 
+setup your MySQL tables.  MySQL SQL setup can be found in
+
+includes/sql/mysql.sql
+
+I would recommend using phpMyAdmin or some other MySQL tool
+to execute the setup query.  Make sure to add columns for
+additional locations in the 'booking_schedule' table, if needed.
+
+http://www.phpmyadmin.net/
+
+
+FCK Editor / CKEditor
+
+The FCKEditor, now known as the CKEditor, was removed from this
+package with v1.1 due to lack of need and licensing issues.
+
+http://ckeditor.com/
+
+
+overLIB 4.00:
+
+Also integrated into the calendar is the overLIB javascript 
+which handles the creation of the popup information boxes.
+
+http://www.bosrup.com/web/overlib/
+
+CSS/Fonts can be found in the setup file:  overlib.js
+
+
+Session Directory:
+
+The includes/sessions/ directory must be made writable for the 
+user sessions to be stored.  This script is setup not to use the 
+PHP default sessions directory, because of security issues.
+
+chmod 775 sessions
+
+
+Log Files and Logs Directory:
+
+The Logs Directory and the included files need to also be set
+to writable and executable.
+
+chmod 775 logs
+chmod 664 parse_time_log.txt
+
+
+Beta Warning:
+
+While this is the first official release of the phpBookingCalendar - 
+booking calendar script, I can not guarantee that future versions will
+be backwards compatible.  Indeed, the database location mapping will
+most likely be integrated into a future administration section.
+
+Thank you for reading all the way down here ;)
+Jeff Walters
+
+Feel free to send bugs/comments/corrections/wishes to:
+design@jjwdesign.com
+

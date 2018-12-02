@@ -1,0 +1,6 @@
+11/03/2014 18:41:36 - /booking_calendar/user_register.php (0.012ms)
+11/03/2014 18:41:36 - /booking_calendar/user_register.php (0.009ms)
+11/03/2014 18:41:37 - /booking_calendar/user_login.php (0.016ms)
+11/03/2014 18:41:39 - /booking_calendar/week_view.php?view=week&date=2014-03-11&loc=loc1 (0.024ms)
+11/03/2014 18:41:39 - /booking_calendar/day_view.php?view=day&date=2014-03-11&loc=loc1 (0.017ms)
+11/03/2014 18:41:40 - /booking_calendar/month_view.php?view=month&date=2014-03-11&loc=loc1 (0.016ms)

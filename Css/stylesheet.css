@@ -1,0 +1,81 @@
+.left-margin{
+    margin:0 .5em 0 0;
+}
+
+.right-button-margin{
+    margin: 0 0 1em 0;
+    overflow: hidden;
+}
+
+#logo {
+    width: 70%;
+    margin:auto;
+    padding:0;
+}
+
+#header{
+    margin-top: 30px;
+}
+.container{
+    padding: 5%;
+    background-color: #f9f9f9;
+}
+hr{
+    border-top: 1px solid #403a3a;
+}
+#searchform{
+    margin-bottom: 60px;
+}
+
+
+
+.card {
+    float: left;
+    margin: 30px;
+}
+.row > .column {
+    padding: 0 8px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.card {
+    float: left;
+    width: 24%;
+    padding: 10px;
+}
+
+/* Style the images inside the grid */
+.card img {
+    opacity: 0.8;
+    cursor: pointer;
+    width: 90%;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.card img:hover {
+    opacity: 1;
+}
+.btn:focus, .btn:active, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#image-gallery .modal-footer{
+    display: block;
+}
+
+.thumb{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.table .thead{
+    background-color: orange;
+}
