@@ -17,7 +17,7 @@ class AdminHandler extends ServerHandler
             while ($row = mysqli_fetch_assoc($result))
                 if ($row["Adminlevel"] == 1)
                 {
-                    echo "<h4>Velkommen " . $_SESSION['username'] ."</h4>";
+                    echo "<h2 class='float-left'>Velkommen <br> " . $_SESSION['username'] ."</h2>";
                 }
         }
     }

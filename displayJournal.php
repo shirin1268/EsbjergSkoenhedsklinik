@@ -12,15 +12,15 @@ if (isset($_GET['mode'])) {
     $mode = $_GET['mode'];
 
        if ($mode=="ShowJournal")
-       {
-           $encoded =trim($_GET['cpr']) ;
-           var_dump($encoded);
+       {;
+           $encoded = trim($_GET['cpr']) ;
+
            $behandlinger = $jh->displayJournal($encoded);
 
            if($behandlinger>0)
            {
                $name=$jh->displaypatientname($encoded);
-               $cpr = $crypt->decode($encoded);
+               $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
                echo "
 <table class='table'>
@@ -81,12 +81,13 @@ echo "
 <td> " . $image['picturetitle'] . "</td>
 <td><a href='displayJournal.php?mode=UpdatePicture&id=" . $image['pictureID'] . "' >Ret/Slet</a></td>
  </tr>
+
  ";
                }
-           echo "
+           echo " </table>
     <br>
       <div class='row'>
-         <a href='createJournal.php'  class='btn btn-secondary float-right'>Tilføj Behandling</a>
+         <a href='createJournal.php'  class='btn btn-login float-right'>Tilføj Behandling</a>
       </div>
     <br>
     ";
@@ -104,7 +105,7 @@ echo "
                    $betaling =ValidateHandler::validinput( $_POST["betaling"],$connection);
                    $description =ValidateHandler::validinput($_POST["description"],$connection) ;
                    $dato = $_POST["dato"];
-                   $encoded =$crypt->encode($_POST["cpr"]) ;
+                   $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
                    if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
                    {
                        echo "<div class='alert alert-success'>Updated.</div>";
@@ -124,7 +125,7 @@ echo "
                {
                    $connection = $sh->dbConnect();
                    $kategori = ValidateHandler::validinput($_POST['kategori'], $connection);
-                   $encoded =$crypt->encode($_POST["cpr"]);
+                   $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
                    $dato = ValidateHandler::validinput($_POST['dato'],$connection);
                    $title = ValidateHandler::validinput($_POST['title'], $connection);
 

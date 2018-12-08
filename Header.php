@@ -17,8 +17,8 @@ $ah =new AdminHandler();
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><?php echo $page_title; ?> </title>
-
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="Css/stylesheet.css" />
@@ -30,25 +30,32 @@ $ah =new AdminHandler();
 <body>
 <div class="container">
 
-    <div class="row align-items-center" id="header">
-        <div class="col-6 col-md-4">
-            <h3>
-            <?php
-            echo date("d/m/Y");
-            ?>
-            </h3>
-        </div>
-        <div class="col-6 col-md-4">
+    <div class="row align-items-bottom" id="header">
+
+        <div class="col-md-4">
             <?php
             echo $ah->checkForAdmin($_SESSION['adminID']);
             ?>
         </div>
-        <div class="col-6 col-md-4">
+
+
+    <div class="col-6 col-md-4">
+        <p class="lead float-right">
+            <?php
+            //echo date("d/m/Y");
+            ?>
+        </p>
+    </div>
+        <div class="col-md-4">
             <img class="img" id='logo' src='img/logo-3.png'>
         </div>
     </div>
-    <a href="velkommen.php"><h5>Tilbag til forside</h5></a>
+    <?php
+    If($page_title!="Velkomst page"){
 
-
+   echo '<a class="text-dark" href="velkommen.php"><h5>Tilbag til forside</h5></a>';
+    }
+    ?>
+    <hr>
     
     

@@ -11,37 +11,37 @@ class FormHandler extends ServerHandler
     public function DisplayRegisterUserForm()
     {
 
-        echo '<h2>Registrer en ny Admin</h2>
+        echo '<p class="display-4">Registrer en ny Admin</p>
 
 			<form  action="" method="post" >
 			    <table class="table table-hover table-responsive table-bordered">
 
 				<tr >
-					<b>Førnavn:</b>
+					<p class="lead">Førnavn:</p>
 					 <input class="form-control" id="exampleInputFornavn"  type="text" name="fornavn" required/>
 				</tr><br>
 				<tr>	     
-					<b>Efternavn:</b>
+					<p class="lead">Efternavn:</p>
 					 <input type="text" name="efternavn" class="form-control" id="exampleInputEfternavn" required/>    
                 </tr><br>
                 <tr>
-                	<b>Email:</b>
+                	<p class="lead">Email:</p>
 					<input type="email" name="email" placeholder="eksempl@domain.com"  class="form-control" id="exampleInputEmail">
 				</tr> <br> 
 				<tr>
-					 <b>Brugernavn:</b>
+					 <p class="lead">Brugernavn:</p>
 					  <input type="text" name="username" class="form-control" id="exampleInputuser" required/>
 				</tr><br>
 				<tr>
-					<b>Password:</b>
+					<p class="lead">Password:</p>
 					<input class="form-control" id="exampleInputPassword1" type="password"  name="password" required>    
 				</tr>  <br>  
 				<tr>  
-					<b>Adminpass:</b>
+					<p class="lead">Adminpass:</p>
 					<input class="form-control" id="exampleInputPassword1" type="password"  name="adminpass" required>
 				</tr> <br>
 				<tr>
-					<button type="submit" class="btn btn-light" name="RegisterNewUser" value="RegisterNewUser" >Register</button>
+					<button type="submit" class="btn btn-login float-right" name="RegisterNewUser" value="RegisterNewUser" >Register</button>
 				</tr>
 			    </table>
 			</form> ';
@@ -50,42 +50,42 @@ class FormHandler extends ServerHandler
 
     public function DisplayRegisterPatientForm(){
 
-        echo '<h2>Registrer en ny kunde</h2>
+        echo '<p class="display-4">Registrer en ny kunde</p>
 <form action="" method="post" >
 		<table class="table table-hover table-responsive table-bordered">
 				
 				<tr>
-				<b>Førnavn:</b>
+				<p class="lead">Førnavn:</p>
 					   <input class="form-control" id="exampleInputEmail1" type="text" name="fornavn" maxlength="30" value="" required/>
 					</tr><br>
 				<tr>
-					<b>Efternavn:</b>
+					<p class="lead">Efternavn:</p>
 					<input class="form-control" id="exampleInputEmail1" type="text" name="efternavn" maxlength="30" value="" >
 				</tr><br>
 				<tr>
-					<b>Alder:</b>   
+					<p class="lead">Alder:</p>   
 					 <input class="form-control" id="exampleInputEmail1" type="text" name="alder" maxlength="30" value="" >
 				</tr><br>
 				<tr>
-					<b>Køn:</b>   
+					<p class="lead">Køn:</p>   
 					 <input class="form-control" id="exampleInputEmail1" type="text" name="gender" maxlength="30" value="" />
 				</tr><br>
 				<tr>
-					<b>CPR nr.:</b> 
+					<p class="lead">CPR nr.:</p> 
 					 <input class="form-control" id="exampleInputEmail1" type="text" name="cpr" placeholder="000000000000" maxlength="30" value="" required/> 
 				</tr><br>
 				<tr>
-					<b>Email:</b>   
+					<p class="lead">Email:</p>   
 					<input class="form-control" id="exampleInputEmail1" type="email" name="email" placeholder="eksempl@domain.com" maxlength="30" value="">
 				</tr><br>
 				<tr>
-					<b>Tlf:</b>  
+					<p class="lead">Tlf:</p>  
 					 <input class="form-control" id="exampleInputEmail1" type="tel" placeholder="telefone" name="tlf" >  
 				</tr>
 				<br>
 
 					<tr>            
-					<button class="btn btn-light" type="submit" name="RegisterNewPatient" value="RegisterNewPatient" > Register ny kunde</button>
+					<button class="btn btn-login float-right" type="submit" name="RegisterNewPatient" value="RegisterNewPatient" > Register ny kunde</button>
 					</tr>
 		</table>		
 		
@@ -103,7 +103,7 @@ class FormHandler extends ServerHandler
         foreach($stmt as $result)
         {   $crypt = new Encryption;
             $encodedcpr=$result['CPR'];
-            $cpr = $crypt->decode($encodedcpr);
+            $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
             echo "<option >".$cpr."</option> ";
         }
     }
@@ -141,9 +141,9 @@ class FormHandler extends ServerHandler
         echo "<form id='searchform' role='search' action='' method='post'>
         <div class='input-group mb-3'>" ;
         $searchValue=isset($searchTerm) ? "value='{$searchTerm}'" : "";
-        echo "<input type='text' class='form-control' placeholder='Indtast venligst navn eller efternavn.' name='search' id='srch-term' required {$searchValue} />
+        echo "<input type='text' class='form-control font-weight-light' placeholder='Indtast venligst navn eller efternavn.' name='search' id='srch-term' required {$searchValue} />
         <div class='input-group-btn'>
-        <button class='btn btn-primary' name='submitSearch' type='submit'><i class='fa fa-search'></i></button>
+        <button class='btn btn-login float-right' name='submitSearch' type='submit'><i class='fa fa-search'></i></button>
         </div>
         </div>
         </form>";
@@ -165,7 +165,7 @@ class FormHandler extends ServerHandler
                 {
                     $crypt = new Encryption;
                     $encodedcpr=$result['CPR'];
-                    $decodedcpr = $crypt->decode($encodedcpr);
+                    $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
                     echo
                         "<tr>
         <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
@@ -228,7 +228,7 @@ class FormHandler extends ServerHandler
 	       </tr><br>
 	   
            <tr>
-                <button class='btn btn-secondary left-margin' name='UploadImg' value='UploadImg'>
+                <button class='btn btn-login float-right' name='UploadImg' value='UploadImg'>
                       Upload
                   </button>
            </tr><br>
@@ -246,7 +246,7 @@ class FormHandler extends ServerHandler
         $row=mysqli_fetch_array($result);
         $crypt = new Encryption;
         $encodedcpr=$row['CPR'];
-        $cpr = $crypt->decode($encodedcpr);
+        $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
         echo "
         <form action='' method='post'>
         <table class='table table-hover table-responsive table-bordered'>
@@ -278,7 +278,7 @@ class FormHandler extends ServerHandler
 	   
            <tr>
                   <button onclick='return confirm(\"Er du sikker på at du vil opdatere denne behandling ? \") '
-                     class='btn btn-secondary left-margin' name='UpdateBehandling' value='UpdateBehandling'>
+                     class='btn btn-login float-right ' name='UpdateBehandling' value='UpdateBehandling'>
                       Update
                   </button>
            </tr><br>
@@ -295,7 +295,7 @@ class FormHandler extends ServerHandler
         $result=$stmt->get_result();
         $row=mysqli_fetch_array($result);$crypt = new Encryption;
         $encodedcpr=$row['CPR'];
-        $cpr = $crypt->decode($encodedcpr);
+        $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
 
         echo "
         <form action='' method='post'>
@@ -328,10 +328,10 @@ class FormHandler extends ServerHandler
 	          <input name='title' class='form-control' value='".$row['picturetitle']."'>
 	       </tr><br>
            <tr>
-           <button class='btn btn-secondary left-margin' name='UpdateImg' value='UpdateImg'>
+           <button class='btn btn-login float-right' name='UpdateImg' value='UpdateImg'>
                       Update
                   </button>
-                  <button class='btn btn-secondary left-margin' 
+                  <button class='btn btn-login float-right' 
                           onclick='return confirm(\"Er du sikker på at du vil slette denne billede?\") '
                           name='DeleteImg' value='DeleteImg'>
                       Slet billede

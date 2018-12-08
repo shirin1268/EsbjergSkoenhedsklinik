@@ -8,33 +8,33 @@ $ah = new AdminHandler();
 $sh = new SearchHandler();
 
 $page_title = "Velkomst page";
+
 include_once "Header.php";
 
 ?>
 
 <div class="row">
     <div class="col-sm-4">
-        <h5>Valg en af de nedenstående</h5>
         <br/>
         <div class="btn-group-vertical">
 
-            <button type="button" class="btn btn-outline-secondary">
-                <a href="velkommen.php?mode=RegisterNewPatient"> Opret profil til en ny kunde</a>
-            </button><br/><br/>
-            <button type="button" class="btn btn-outline-secondary">
-                <a href="velkommen.php?mode=SearchPatient">Opdater en gammel profil</a>
-            </button><br/><br/>
-            <button type="button" class="btn btn-outline-secondary">
-                <a href="velkommen.php?mode=RegisterNewUser"> Opret ny admin</a>
-            </button><br/><br/>
-            <button type="button" class="btn btn-outline-secondary">
-                <a href="logout.php">Log ud</a>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"> Opret profil til en ny kunde</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="createJournal.php"><p class="lead">Find en eksisterende kunde</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"> Opret ny admin</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="logout.php"><p class="lead">Log ud</p></a>
             </button>
         <br/>
             </div>
     </div>
 
-    <div class="col-md-auto" style="min-width: 60%">
+    <div class="col-md-8 banner-sec" style="min-width: 60%">
         <?php
         if (isset($_GET['mode']))
         {
@@ -75,6 +75,15 @@ include_once "Header.php";
 
             }
 
+        }else {
+            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='d-block img-fluid'>
+<div class='carousel-caption d-none d-md-block'>
+                                        <div class='banner-text'>
+                                            <h2>This is Heaven</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                                        </div>
+                                    </div>
+    ";
         }
         ?>
 
@@ -139,7 +148,7 @@ if (isset($_POST['RegisterNewPatient']))
         $gender =ValidateHandler::validinput($_POST["gender"],$connection);
 
             $encrypt = new Encryption();
-        $cpr =$encrypt->encode($_POST["cpr"]);
+        $cpr =$encrypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
 
         if( $pa->RegisterNewPatient($fornavn ,$efternavn , $email, $tlf , $cpr, $alder, $gender)==true)
         {

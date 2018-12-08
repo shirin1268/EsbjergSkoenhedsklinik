@@ -7,17 +7,17 @@ $fh = new FormHandler();
 $sh = new ServerHandler();
 $imgh = new ImageResizer();
 ?>
-<h4> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
+<h4 class="lead font-weight-normal"> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
 <form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
     <table class='table table-hover table-responsive table-bordered'>
 
-        <tr>
+        <tr class="lead font-weight-normal">
            Kategori name
                 <input name="kategori" class='form-control'>
         </tr><br>
         <tr>
-                <button type="submit" name="CreateKategori" class="btn btn-secondary left-margin">Create ny kategori for billeder </button>
+                <button type="submit" name="CreateKategori" class="btn btn-login float-right">Create ny kategori for billeder </button>
         </tr><br><br>
 
     </table><br>
@@ -43,7 +43,7 @@ if (isset($_POST['CreateKategori']))
     }
 }
 ?>
-<h4> Tilføj billede via denne form</h4>
+<h4 class="lead font-weight-normal"> Tilføj billede via denne form</h4>
 <?php
 $fh->AddPictureForm();
 define("MAX_SIZE" , "30000");
@@ -84,7 +84,7 @@ if(isset($_POST['UploadImg'])) {
             $kategoriname = ValidateHandler::validinput($_POST['kategori'], $connection);
 
             $encrypt = new Encryption();
-            $cpr = $encrypt->encode($_POST['cpr']);
+            $cpr = $encrypt->encrypt_decrypt('encrypt',$_POST['cpr']);
             $dato=$_POST['dato'];
             $title = ValidateHandler::validinput($_POST['title'], $connection);
            if( $imgh->UploadPicture($iName, $kategoriname, $cpr, $dato, $title)==true){

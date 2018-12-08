@@ -43,13 +43,13 @@ $encrypt= new Encryption();
         </tr><br>
 
         <tr>
-                <button type="submit" name="CreateJournal" class="btn btn-primary">Create Journal</button>
+                <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
         </tr><br><br>
 
     </table><br>
 </form>
 
-</
+</div>
 
 <?php
 if (isset($_POST['CreateJournal']))
@@ -65,7 +65,7 @@ if (isset($_POST['CreateJournal']))
         $description = ValidateHandler::validinput($_POST["description"],$connection);
         $betaling =ValidateHandler::validinput($_POST["betaling"],$connection);
         $dato=ValidateHandler::validinput($_POST['dato'],$connection);
-        $cpr = $encrypt->encode(trim($_POST["cpr"]));
+        $cpr = $encrypt->encrypt_decrypt('encrypt',trim($_POST["cpr"]));
 
     if($jh->createJournal($behandlingname,$description,$dato,$betaling,$cpr)==true)
     {
