@@ -34,7 +34,7 @@ $ah =new AdminHandler();
 
         <div class="col-md-4">
             <?php
-            echo $ah->checkForAdmin($_SESSION['adminID']);
+            $ah->confirm_logged_in();
             ?>
         </div>
 
@@ -42,7 +42,7 @@ $ah =new AdminHandler();
     <div class="col-6 col-md-4">
         <p class="lead float-right">
             <?php
-            //echo date("d/m/Y");
+
             ?>
         </p>
     </div>
@@ -51,7 +51,7 @@ $ah =new AdminHandler();
         </div>
     </div>
     <?php
-    If($page_title!="Velkomst page"){
+    If($page_title!="Velkomst page"&& $page_title!="Admin login"){
 
    echo '<a class="text-dark" href="velkommen.php"><h5>Tilbag til forside</h5></a>';
     }

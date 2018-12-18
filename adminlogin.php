@@ -5,72 +5,32 @@ spl_autoload_register(function ($class){
     include "../Handler/".$class.".php";
 });
 
-$sh = new ServerHandler();
+$ah = new AdminHandler();
 
-
-
-if(isset($_POST["LoginSomAdmin"]) &&
-    !empty($_POST["username"]) &&
-    !empty($_POST["password"])){
-
-    $connection = $sh->dbConnect();
-    $username = trim(mysqli_real_escape_string($connection, $_POST['username']));
-    $password = trim(mysqli_real_escape_string($connection, $_POST['password']));
-
-
-    $query = "SELECT * FROM `users` WHERE `username`= '$username' ";
-    $result = mysqli_query($connection, $query);
-
-
-    if (mysqli_num_rows($result) == 1)
-    {
-        // username/password authenticated
-        // and only 1 match
-
-        $found_user = mysqli_fetch_array($result);
-        echo $found_user['FullName'];
-        if (password_verify($password, $found_user['password']))
-
-        {
-            $_SESSION['adminID'] = $found_user['adminID'];
-            $_SESSION['username'] = $found_user['username'];
-        }
-
-        redirect_to("velkommen.php");
-        die();
-    }
-    else
-    {
-        // username/password combo was not found in the database
-
-        echo '<script>alert("Brugernavn eller Password var inkorrekt. Prøv venligst igen.");</script>';
-    }
-}
 $page_title = "Admin login";
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?php echo $page_title; ?> </title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="Css/stylesheet.css" />
-</head>
-<body>
-<div class="container">
-
-    <div class="row align-items-center" id="header">
-        <div class="row-header">
-        <img class="img" id='logo' src='img/logo-3.png'>
-        </div>
+        <title><?php echo $page_title; ?> </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="Css/stylesheet.css" />
+    </head>
+    <body>
+    <div class="container">
+        <div class="row align-items-center" id="header">
+            <div class="row-header">
+                <img class="img" id='logo' src='img/logo-3.png'>
+            </div>
     <section class="login-block">
 
                 <div class="row">
@@ -112,8 +72,13 @@ $page_title = "Admin login";
                     </div>
                 </div>
         </section>
-</div>
-</div>
 
-</body>
-</html>
+<?php
+if(isset($_POST["LoginSomAdmin"]) &&
+    !empty($_POST["username"]) &&
+    !empty($_POST["password"])){
+
+    $ah->LogInSomAdmin();
+}
+include_once "footer.php";
+?>

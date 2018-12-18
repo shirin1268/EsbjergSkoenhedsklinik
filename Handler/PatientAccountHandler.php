@@ -23,7 +23,7 @@ class PatientAccountHandler extends ServerHandler
 
         $stmt = $connection->prepare($query);
         $stmt->bind_param("sssisis", $fornavn, $efternavn, $email, $tlf, $cpr, $alder,$gender);
-        $stmt->execute();
+
 
         if($stmt->execute()){
             return true;

@@ -96,7 +96,7 @@ if(isset($_POST['UploadImg'])) {
 }
 
 foreach($upmsg as $msg){
-    echo "<h4>$msg</h4>";
+    echo "<div class='alert alert-secondary'>$msg</div>";
 }
 
 

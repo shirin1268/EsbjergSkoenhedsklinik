@@ -9,6 +9,7 @@ $sh = new SearchHandler();
 
 $page_title = "Velkomst page";
 
+
 include_once "Header.php";
 
 ?>
