@@ -1,12 +1,11 @@
 <?php
-require_once("Toploader.php");
+require_once "Toploader.php";
 
-spl_autoload_register(function ($class)
-{
-    include 'Handler/'. $class . '.php';
+spl_autoload_register(function ($class) {
+    include 'Handler/' . $class . '.php';
 });
 
-$ah =new AdminHandler();
+$ah = new AdminHandler();
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -22,10 +21,9 @@ $ah =new AdminHandler();
          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="Css/stylesheet.css" />
-
-    <script>
-        $('.carousel').carousel()
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
@@ -34,8 +32,8 @@ $ah =new AdminHandler();
 
         <div class="col-md-4">
             <?php
-            $ah->confirm_logged_in();
-            ?>
+$ah->confirm_logged_in();
+?>
         </div>
 
 
@@ -43,7 +41,7 @@ $ah =new AdminHandler();
         <p class="lead float-right">
             <?php
 
-            ?>
+?>
         </p>
     </div>
         <div class="col-md-4">
@@ -51,11 +49,10 @@ $ah =new AdminHandler();
         </div>
     </div>
     <?php
-    If($page_title!="Velkomst page"&& $page_title!="Admin login"){
+if ($page_title != "Velkomst page" && $page_title != "Admin login") {
 
-   echo '<a class="text-dark" href="velkommen.php"><h5>Tilbag til forside</h5></a>';
-    }
-    ?>
+    echo '<a class="text-dark" href="velkommen.php"><h5>Tilbag til forside</h5></a>';
+}
+?>
     <hr>
-    
-    
+
