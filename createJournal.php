@@ -7,51 +7,7 @@ $jh = new JournalHandler();
 $pa = new PatientAccountHandler();
 $fh =new FormHandler();
 $encrypt= new Encryption();
-?>
 
-    <div class="col-md-auto" style="min-width: 80%">
-<form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
-    <table class='table table-hover table-responsive table-bordered'>
-
-        <tr>
-            CPR
-                <select class='form-control' name='cpr' >
-                    <?php
-                    $fh->readCPR();
-                    ?>
-                </select>
-        </tr><br>
-        <tr>
-            Behandlingsdato:
-            <br>
-            <input type='date' name='dato' class='form-control' >
-        </tr><br>
-        <tr>
-            Behandling:
-            <input type='text' name='behandlingname' class='form-control' />
-        </tr><br>
-
-        <tr>
-            Beskrivelse:
-            <textarea type='text' name='description' class="form-control" id="exampleFormControlTextarea1" rows="10" ></textarea>
-        </tr><br>
-
-        <tr>
-            Betaling
-            <textarea name='betaling' class='form-control'></textarea>
-        </tr><br>
-
-        <tr>
-                <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
-        </tr><br><br>
-
-    </table><br>
-</form>
-
-</div>
-
-<?php
 if (isset($_POST['CreateJournal']))
 {
     if(
@@ -67,16 +23,56 @@ if (isset($_POST['CreateJournal']))
         $dato=ValidateHandler::validinput($_POST['dato'],$connection);
         $cpr = $encrypt->encrypt_decrypt('encrypt',trim($_POST["cpr"]));
 
-    if($jh->createJournal($behandlingname,$description,$dato,$betaling,$cpr)==true)
-    {
-        echo "<div class='alert alert-success'>Journal was created.</div>";
+        if($jh->createJournal($behandlingname,$description,$dato,$betaling,$cpr)==true)
+        {
+            echo '<div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+                Journal was created.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+        }
+        else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+                Unable to create Journal.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+        }
     }
-    else{
-        echo "<div class='alert alert-danger'>Unable to create Journal.</div>";
-    }
-    }
-
 }
+?>
+    
+<form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <div class="form-group">
+        <label>CPR nr.:</label>
+        <select class='form-control' name='cpr' >
+            <?php
+                $fh->readCPR();
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Behandlingsdato:</label>
+        <input type='date' name='dato' class='form-control' >
+    </div>
+    <div class="form-group">
+        <label>Behandling:</label>
+        <input type='text' name='behandlingname' class='form-control' />
+    </div>
+    <div class="form-group">
+        <label>Beskrivelse:</label>
+        <textarea type='text' name='description' class="form-control" id="exampleFormControlTextarea1" rows="10" ></textarea>
+    </div>
+    <div class="form-group">
+        <label>Betaling:</label>
+        <textarea name='betaling' class='form-control'></textarea>
+    </div>
+    <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
+</form>
 
+
+<?php
 include_once "footer.php";
 ?>
