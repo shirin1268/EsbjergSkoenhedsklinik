@@ -11,8 +11,19 @@ $crypt = new Encryption;
 if (isset($_GET['mode'])) {
     $mode = $_GET['mode'];
 
-       if ($mode=="ShowJournal")
-       {;
+    if($mode=="OpretJournal"){
+        $encoded = trim($_GET['cpr']) ;
+
+        $patient = $jh->displaypatientname($encoded);
+        $navn= $patient["fornavn"];
+        $efternavn = $patient["efternavn"];
+
+        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
+
+        $fh->DisplayCreateJournalForm($cpr,$navn,$efternavn);
+    }
+       elseif ($mode=="ShowJournal")
+       {
            $encoded = trim($_GET['cpr']) ;
 
            $behandlinger = $jh->displayJournal($encoded);
@@ -27,6 +38,18 @@ if (isset($_GET['mode'])) {
    <tr class='table-warning'>
        <th scope='row'>Patientsnavn: </th>
         <td style='text-transform:capitalize'>  " . $name['fornavn'] . "  ".$name['efternavn'] . "</td>
+    </tr>
+    <tr class='shadow p-3 mb-5 bg-white rounded'>
+       <th scope='row'>Tel: </th>
+        <td scope='row'> ".$name['tlf'] . "</td>
+    </tr>
+    <tr class='shadow p-3 mb-5 bg-white rounded'>
+       <th scope='row'>Email: </th>
+        <td scope='row'> ".$name['email'] . "</td>
+    </tr>
+    <tr class='shadow p-3 mb-5 bg-white rounded'>
+       <th scope='row'>Alder: </th>
+        <td scope='row'> ".$name['alder'] . "</td>
     </tr>
     <tr class='shadow p-3 mb-5 bg-white rounded'>
     <th scope='row'>CPR nummer: </th>

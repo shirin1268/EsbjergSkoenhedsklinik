@@ -140,16 +140,17 @@ class FormHandler extends ServerHandler
 
         echo 
         "<div class='table-responsive'>
-            <table class='table table-hover table-bordered'>
-                <thead>
+            <table class='table table-bordered'>
+                
                 <tr>
                 <th>Fornavn</th>
                 <th>Efternavn</th>
                 <th>CPR nr.</th>
                 <th>Email</th>
                 <th></th>
+                <th></th>
                 </tr>
-                </thead>";
+                ";
         foreach ($searchresult as $result) {
             $crypt = new Encryption;
             $encodedcpr=$result['CPR'];
@@ -163,6 +164,11 @@ class FormHandler extends ServerHandler
                     <td>
                     <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
                     <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
+                    </a>
+                    </td>
+                    <td>
+                    <a name='OpretJournal' href='displayJournal.php?mode=OpretJournal&cpr=" . $result['CPR']. " '>
+                    <button class='btn btn-link'  value='CreateJournal'>Opret Journal</button>
                     </a>
                     </td>
                 </tr>";
@@ -326,6 +332,46 @@ class FormHandler extends ServerHandler
            </table>
 </form> ";}
 
+    public function DisplayCreateJournalForm($cpr,$navn,$efternavn){
+    echo "
+<div class='col-md-auto' style='min-width: 80%'>
+    <form id='createJ' action='createJournal.php' method='post'>
+        <h4>Opret journal til:"." " .$navn ." ".$efternavn."</h4>
+        <table class='table table-hover table-responsive table-bordered'>
+        <tr>
+        CPR nummer: 
+        <input type='text' name='cpr' class='form-control' value='" . $cpr . "'>  
+        </tr>
+            <br>
+            <tr>
+                Behandlingsdato:
+                <br>
+                <input type='date' name='dato' class='form-control' >
+            </tr><br>
+            <tr>
+                Behandlingsnavn:
+                <input type='text' name='behandlingname' class='form-control' />
+            </tr><br>
+
+            <tr>
+                Beskrivelse af behandlingen:
+                <textarea type='text' name='description' class='form-control' id='exampleFormControlTextarea1' rows='10' ></textarea>
+            </tr><br>
+
+            <tr>
+                Betaling
+                <textarea name='betaling' class='form-control'></textarea>
+            </tr><br>
+
+            <tr>
+                <button type='submit' name='CreateJournal' class='btn btn-login float-right'>Create Journal</button>
+            </tr><br><br>
+
+        </table><br>
+    </form>
+
+</div>";
+}
 
 
 }
