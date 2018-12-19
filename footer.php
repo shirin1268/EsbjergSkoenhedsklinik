@@ -1,6 +1,7 @@
 
 </div>
 </div>
+</div>
 <footer class="container-fluid text-center bg-lightgray">
 
     <div class="copyrights" style="margin-top:25px;">

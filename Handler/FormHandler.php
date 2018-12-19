@@ -136,52 +136,38 @@ class FormHandler extends ServerHandler
         }
     }
 
-    public function DisplaySearchForm(){
-
-        echo "<form id='searchform' role='search' action='' method='post'>
-        <div class='input-group mb-3'>" ;
-        $searchValue=isset($searchTerm) ? "value='{$searchTerm}'" : "";
-        echo "<input type='text' class='form-control font-weight-light' placeholder='Indtast venligst navn eller efternavn.' name='search' id='srch-term' required {$searchValue} />
-        <div class='input-group-btn'>
-        <button class='btn btn-login float-right' name='submitSearch' type='submit'><i class='fa fa-search'></i></button>
-        </div>
-        </div>
-        </form>";
-    }
-
     public function DisplaySearchResult($searchresult){
 
-        echo "
-
-<table class='table table-hover table-responsive table-bordered'>
-        <tr>
-        <th>Fornavn</th>
-        <th>Efternavn</th>
-        <th>CPR nr.</th>
-        <th>Email</th>
-        <th></th>
-        </tr>";
-                foreach ($searchresult as $result)
-                {
-                    $crypt = new Encryption;
-                    $encodedcpr=$result['CPR'];
-                    $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
-                    echo
-                        "<tr>
-        <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
-        <td><input name='efternavn' value=' ". $result['efternavn'] ." '></td>
-        <td><input name='cpr' value=' ". $decodedcpr . " ' ></td>
-        <td><input name='email' value=' ". $result['email'] . " ' ></td>
-        <td>
-        <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-        <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
-        </a>
-        </td>
+        echo 
+        "<div class='table-responsive'>
+            <table class='table table-hover table-bordered'>
+                <thead>
+                <tr>
+                <th>Fornavn</th>
+                <th>Efternavn</th>
+                <th>CPR nr.</th>
+                <th>Email</th>
+                <th></th>
+                </tr>
+                </thead>";
+        foreach ($searchresult as $result) {
+            $crypt = new Encryption;
+            $encodedcpr=$result['CPR'];
+            $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
+            echo
+                "<tr>
+                    <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
+                    <td><input name='efternavn' value=' ". $result['efternavn'] ." '></td>
+                    <td><input name='cpr' value=' ". $decodedcpr . " ' ></td>
+                    <td><input name='email' value=' ". $result['email'] . " ' ></td>
+                    <td>
+                    <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
+                    <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
+                    </a>
+                    </td>
                 </tr>";
-                }
-                echo "</table>
-
-        ";
+        }
+        echo "</table></div>";
     }
 
     public function AddPictureForm(){

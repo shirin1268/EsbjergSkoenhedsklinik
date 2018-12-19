@@ -7,6 +7,10 @@ $jh = new JournalHandler();
 $pa = new PatientAccountHandler();
 $fh =new FormHandler();
 $encrypt= new Encryption();
+<<<<<<< HEAD
+=======
+
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
 if (isset($_POST['CreateJournal']))
 {
     if(
@@ -21,6 +25,10 @@ if (isset($_POST['CreateJournal']))
         $betaling =ValidateHandler::validinput($_POST["betaling"],$connection);
         $dato=ValidateHandler::validinput($_POST['dato'],$connection);
         $cpr = $encrypt->encrypt_decrypt('encrypt',trim($_POST["cpr"]));
+<<<<<<< HEAD
+=======
+
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
         if($jh->createJournal($behandlingname,$description,$dato,$betaling,$cpr)==true)
         {
             echo '<div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
@@ -41,7 +49,11 @@ if (isset($_POST['CreateJournal']))
     }
 }
 ?>
+<<<<<<< HEAD
     <div class="col-md-auto" style="min-width: 80%">
+=======
+ <div class="col-md-auto" style="min-width: 80%">
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
         <form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <h4>Opret journal til patienten via nedenstående form</h4>
             <table class='table table-hover table-responsive table-bordered'>
@@ -68,6 +80,7 @@ if (isset($_POST['CreateJournal']))
                     Beskrivelse af behandlingen:
                     <textarea type='text' name='description' class="form-control" id="exampleFormControlTextarea1" rows="10" ></textarea>
                 </tr><br>
+<<<<<<< HEAD
 
                 <tr>
                     Betaling
@@ -78,18 +91,39 @@ if (isset($_POST['CreateJournal']))
                     <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
                 </tr><br><br>
 
+=======
+
+                <tr>
+                    Betaling
+                    <textarea name='betaling' class='form-control'></textarea>
+                </tr><br>
+
+                <tr>
+                    <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
+                </tr><br><br>
+
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
             </table><br>
         </form>
 
     </div>
 
+<<<<<<< HEAD
     <!-- <form id="createJ" action="<?php // echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+=======
+<!-- <form id="createJ" action="<?php // echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
     <div class="form-group">
         <label>CPR nr.:</label>
         <select class='form-control' name='cpr' >
             <?php
+<<<<<<< HEAD
 //  $fh->readCPR();
 ?>
+=======
+              //  $fh->readCPR();
+            ?>
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
         </select>
     </div>
     <div class="form-group">
@@ -110,6 +144,11 @@ if (isset($_POST['CreateJournal']))
     </div>
     <button type="submit" name="CreateJournal" class="btn btn-login float-right">Create Journal</button>
 </form>  __>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> df5ff554b74204624452d003f4ec028c1487f413
 <?php
 include_once "footer.php";
 ?>
