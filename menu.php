@@ -28,35 +28,47 @@ $fh = new FormHandler();
             <a class="nav-link text-white" href="logout.php">Log ud</a>
         </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" action="" method="post">
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-outline-light my-2 my-sm-0" name="submitSearch" type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
 </nav>
+
 <br/>
-        <div class="col">
-            <?php
 
-            $fh->DisplaySearchForm();
-            if (isset($_POST['submitSearch']))
-            {
-                $searchTerm= $_POST['search'];
-                $sh->search($searchTerm);
-                $min_length = 2;
+<div class="col">
+<?php
+    if (isset($_POST['submitSearch'])) {
+        $searchTerm= $_POST['search'];
+        $sh->search($searchTerm);
+        $min_length = 2;
 
-                if(strlen($searchTerm) >= $min_length) {
+        if(strlen($searchTerm) >= $min_length) {
+            $searchTerm = htmlspecialchars($searchTerm);
+            $searchresult = $sh->search($searchTerm);
 
-                    $searchTerm = htmlspecialchars($searchTerm);
-                    $searchresult = $sh->search($searchTerm);
-
-                    if ($searchresult > 0) {
-
-                        $fh->DisplaySearchResult($searchresult);
-                    }
-                }
-// tell the user there are no patient
-                else{
-                    echo "<div class='alert alert-danger'>No one found.</div>";
-                }
-
+            //var_dump($searchresult);
+            if (sizeof($searchresult) > 0) {
+                $fh->DisplaySearchResult($searchresult);
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+                    No entry found
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
             }
-            ?>
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+                No entry found
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+        }
+    }
+?>
+            
 
 

@@ -136,19 +136,6 @@ class FormHandler extends ServerHandler
         }
     }
 
-    public function DisplaySearchForm(){
-
-        echo "<form id='searchform' role='search' action='' method='post'>
-        <div class='input-group mb-3'>" ;
-        $searchValue=isset($searchTerm) ? "value='{$searchTerm}'" : "";
-        echo "<input type='text' class='form-control font-weight-light' placeholder='Indtast venligst navn eller efternavn.' name='search' id='srch-term' required {$searchValue} />
-        <div class='input-group-btn'>
-        <button class='btn btn-login float-right' name='submitSearch' type='submit'><i class='fa fa-search'></i></button>
-        </div>
-        </div>
-        </form>";
-    }
-
     public function DisplaySearchResult($searchresult){
 
         echo "
