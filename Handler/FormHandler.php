@@ -138,37 +138,36 @@ class FormHandler extends ServerHandler
 
     public function DisplaySearchResult($searchresult){
 
-        echo "
-
-<table class='table table-hover table-responsive table-bordered'>
-        <tr>
-        <th>Fornavn</th>
-        <th>Efternavn</th>
-        <th>CPR nr.</th>
-        <th>Email</th>
-        <th></th>
-        </tr>";
-                foreach ($searchresult as $result)
-                {
-                    $crypt = new Encryption;
-                    $encodedcpr=$result['CPR'];
-                    $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
-                    echo
-                        "<tr>
-        <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
-        <td><input name='efternavn' value=' ". $result['efternavn'] ." '></td>
-        <td><input name='cpr' value=' ". $decodedcpr . " ' ></td>
-        <td><input name='email' value=' ". $result['email'] . " ' ></td>
-        <td>
-        <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-        <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
-        </a>
-        </td>
+        echo 
+        "<div class='table-responsive'>
+            <table class='table table-hover table-bordered'>
+                <thead>
+                <tr>
+                <th>Fornavn</th>
+                <th>Efternavn</th>
+                <th>CPR nr.</th>
+                <th>Email</th>
+                <th></th>
+                </tr>
+                </thead>";
+        foreach ($searchresult as $result) {
+            $crypt = new Encryption;
+            $encodedcpr=$result['CPR'];
+            $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
+            echo
+                "<tr>
+                    <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
+                    <td><input name='efternavn' value=' ". $result['efternavn'] ." '></td>
+                    <td><input name='cpr' value=' ". $decodedcpr . " ' ></td>
+                    <td><input name='email' value=' ". $result['email'] . " ' ></td>
+                    <td>
+                    <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
+                    <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
+                    </a>
+                    </td>
                 </tr>";
-                }
-                echo "</table>
-
-        ";
+        }
+        echo "</table></div>";
     }
 
     public function AddPictureForm(){
