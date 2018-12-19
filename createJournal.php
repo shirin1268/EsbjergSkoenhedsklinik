@@ -11,11 +11,11 @@ $encrypt= new Encryption();
 
     <div class="col-md-auto" style="min-width: 80%">
 <form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
+<h4>Opret journal til patienten via nedenstående form</h4>
     <table class='table table-hover table-responsive table-bordered'>
 
         <tr>
-            CPR
+            Find patientens CPR
                 <select class='form-control' name='cpr' >
                     <?php
                     $fh->readCPR();
@@ -28,12 +28,12 @@ $encrypt= new Encryption();
             <input type='date' name='dato' class='form-control' >
         </tr><br>
         <tr>
-            Behandling:
+            Behandlingsnavn:
             <input type='text' name='behandlingname' class='form-control' />
         </tr><br>
 
         <tr>
-            Beskrivelse:
+            Beskrivelse af behandlingen:
             <textarea type='text' name='description' class="form-control" id="exampleFormControlTextarea1" rows="10" ></textarea>
         </tr><br>
 

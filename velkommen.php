@@ -12,88 +12,6 @@ $page_title = "Velkomst page";
 
 include_once "Header.php";
 
-?>
-
-<div class="row">
-    <div class="col-sm-4">
-        <br/>
-        <div class="btn-group-vertical">
-
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"> Opret profil til en ny kunde</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="createJournal.php"><p class="lead">Find en eksisterende kunde</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"> Opret ny admin</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="logout.php"><p class="lead">Log ud</p></a>
-            </button>
-        <br/>
-            </div>
-    </div>
-
-    <div class="col-md-8 banner-sec" style="min-width: 60%">
-        <?php
-        if (isset($_GET['mode']))
-        {
-            $mode = $_GET['mode'];
-
-
-            if ($mode == "RegisterNewPatient")
-            {
-                $fh->DisplayRegisterPatientForm();
-
-            }
-
-            elseif ($mode== "RegisterNewUser" )
-            {
-                $fh->DisplayRegisterUserForm();
-            }
-            elseif ($mode=="SearchPatient")
-            {
-                $fh->DisplaySearchForm();
-            }
-
-            if (isset($_POST['submitSearch']))
-            {
-                $searchTerm= $_POST['search'];
-                $sh->search($searchTerm);
-
-                $searchresult = $sh->search($searchTerm);
-
-                if($searchresult>0){
-
-                    $fh->DisplaySearchResult($searchresult);
-                }
-
-// tell the user there are no patient
-                else{
-                    echo "<div class='alert alert-danger'>No one found.</div>";
-                }
-
-            }
-
-        }else {
-            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='d-block img-fluid'>
-<div class='carousel-caption d-none d-md-block'>
-                                        <div class='banner-text'>
-                                            <h2>This is Heaven</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                        </div>
-                                    </div>
-    ";
-        }
-        ?>
-
-    </div>
-
-</div>
-
-<?php
-
 
 if (isset($_POST['RegisterNewUser']))
 {
@@ -168,6 +86,94 @@ if (isset($_POST['RegisterNewPatient']))
 
 }
 
+?>
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <br/>
+        <div class="btn-group-vertical">
+
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"> Opret profil til en ny kunde</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white"  href="displayJournal.php"><p class="lead">Find en eksisterende kunde</p></a>
+            </button><br/>
+            <button  type="button" class="btn btn-login float-right">
+                <a class="text-white" href="createJournal.php"><p class="lead">Opret journal</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"> Opret ny admin</p></a>
+            </button><br/>
+            <button type="button" class="btn btn-login float-right">
+                <a class="text-white" href="logout.php"><p class="lead">Log ud</p></a>
+            </button>
+        <br/>
+            </div>
+    </div>
+
+    <div class="col-md-8 banner-sec" style="min-width: 60%">
+        <?php
+        if (isset($_GET['mode']))
+        {
+            $mode = $_GET['mode'];
+
+
+            if ($mode == "RegisterNewPatient")
+            {
+                $fh->DisplayRegisterPatientForm();
+
+            }
+
+            elseif ($mode== "RegisterNewUser" )
+            {
+                $fh->DisplayRegisterUserForm();
+            }
+            elseif ($mode=="SearchPatient")
+            {
+                $fh->DisplaySearchForm();
+            }
+
+            if (isset($_POST['submitSearch']))
+            {
+                $searchTerm= $_POST['search'];
+                $sh->search($searchTerm);
+
+                $searchresult = $sh->search($searchTerm);
+
+                if($searchresult>0){
+
+                    $fh->DisplaySearchResult($searchresult);
+                }
+
+// tell the user there are no patient
+                else{
+                    echo "<div class='alert alert-danger'>No one found.</div>";
+                }
+
+            }
+
+        }else {
+            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='d-block img-fluid'>
+<div class='carousel-caption d-none d-md-block'>
+                                        <div class='banner-text'>
+                                            <h2>Velkommen til din arkive</h2>
+                                            <p>I menuen på højre side har du flere muligheder for at vælge imellem. Er det ny patient der skal registreres eller 
+                                            en eksisterende patient som du skal finde og se journalen. Efter oprettelse af nye patient har du mulighed også for 
+                                            at oprette journal for vedkommende eller for en eksisterende patient.
+                                            Ligeledes kan du som ejern oprette en ny admin til systemet. 
+                                            </p>
+                                        </div>
+                                    </div>
+    ";
+        }
+        ?>
+
+</div>
+
+</div>
+<?php
 
  include_once "footer.php";
 ?>

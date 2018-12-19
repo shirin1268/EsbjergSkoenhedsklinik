@@ -7,43 +7,8 @@ $fh = new FormHandler();
 $sh = new ServerHandler();
 $imgh = new ImageResizer();
 ?>
-<h4 class="lead font-weight-normal"> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
-<form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
-    <table class='table table-hover table-responsive table-bordered'>
-
-        <tr class="lead font-weight-normal">
-           Kategori name
-                <input name="kategori" class='form-control'>
-        </tr><br>
-        <tr>
-                <button type="submit" name="CreateKategori" class="btn btn-login float-right">Create ny kategori for billeder </button>
-        </tr><br><br>
-
-    </table><br>
-</form>
-
-
-<?php
-if (isset($_POST['CreateKategori']))
-{
-    if(
-    !empty($_POST["kategori"])
-    )
-    {
-        $connection= $sh ->dbConnect();
-        $kategori = ValidateHandler::validinput($_POST["kategori"],$connection);
-
-        if($imgh->createImgKategori($kategori)==true){
-            echo "<div class='alert alert-success'>New category was created.</div>";
-        }
-        else{
-            echo "<div class='alert alert-danger'>Unable to create new category.</div>";
-        }
-    }
-}
-?>
-<h4 class="lead font-weight-normal"> Tilføj billede via denne form</h4>
+<h4> Tilføj billede via denne form</h4>
 <?php
 $fh->AddPictureForm();
 define("MAX_SIZE" , "30000");
@@ -97,6 +62,43 @@ if(isset($_POST['UploadImg'])) {
 
 foreach($upmsg as $msg){
     echo "<div class='alert alert-secondary'>$msg</div>";
+}
+?>
+
+<h4> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
+<form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+
+    <table class='table table-hover table-responsive table-bordered'>
+
+        <tr class="lead font-weight-normal">
+Kategori name
+<input name="kategori" class='form-control'>
+        </tr><br>
+        <tr>
+                <button type="submit" name="CreateKategori" class="btn btn-login float-right">Create ny kategori for billeder </button>
+        </tr><br><br>
+
+    </table><br>
+</form>
+
+
+<?php
+if (isset($_POST['CreateKategori']))
+{
+    if(
+    !empty($_POST["kategori"])
+    )
+    {
+        $connection= $sh ->dbConnect();
+        $kategori = ValidateHandler::validinput($_POST["kategori"],$connection);
+
+        if($imgh->createImgKategori($kategori)==true){
+            echo "<div class='alert alert-success'>New category was created.</div>";
+        }
+        else{
+            echo "<div class='alert alert-danger'>Unable to create new category.</div>";
+        }
+    }
 }
 
 
