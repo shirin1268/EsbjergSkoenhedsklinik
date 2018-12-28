@@ -27,7 +27,7 @@ if (isset($_POST['RegisterNewUser']))
         $efternavn = ValidateHandler::validinput($_POST["efternavn"],$connection);
         $email = ValidateHandler::validinput($_POST["email"],$connection);
         $username = ValidateHandler::validinput($_POST["username"],$connection);
-        $adminpass = ValidateHandler::validinput($_POST["adminpass"],$connection);
+        $adminpass = ValidateHandler::adminlevelvalidation($_POST["adminpass"]);
     $password = ValidateHandler::hashing($_POST["password"]);
 
 
@@ -95,22 +95,23 @@ if (isset($_POST['RegisterNewPatient']))
         <div class="btn-group-vertical">
 
             <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"> Opret profil til en ny kunde</p></a>
+                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"><i class="fas fa-address-card"></i>
+                        Opret profil til en ny kunde</p></a>
             </button><br/>
             <button type="button" class="btn btn-login float-right">
-                <a class="text-white"  href="displayJournal.php"><p class="lead">Find en eksisterende kunde</p></a>
+                <a class="text-white"  href="displayJournal.php"><p class="lead"><i class="fas fa-address-book"></i> Find en eksisterende kunde</p></a>
             </button><br/>
             <button  type="button" class="btn btn-login float-right">
-                <a class="text-white" href="createJournal.php"><p class="lead">Opret journal</p></a>
+                <a class="text-white" href="displayJournal.php"><p class="lead"><i class="fas fa-file-prescription"></i> Opret journal</p></a>
             </button><br/>
             <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"> Opret ny admin</p></a>
+                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"><i class="fas fa-user-md"></i> Opret ny admin</p></a>
             </button><br/>
             <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="logout.php"><p class="lead">Log ud</p></a>
+                <a class="text-white" href="logout.php"><p class="lead"><i class="fas fa-sign-out-alt"></i> Log ud</p></a>
             </button>
         <br/>
-            </div>
+        </div>
     </div>
 
     <div class="col-md-8 banner-sec" style="min-width: 60%">
@@ -128,11 +129,12 @@ if (isset($_POST['RegisterNewPatient']))
 
             elseif ($mode== "RegisterNewUser" )
             {
+                if($_SESSION["Adminlevel"]=="owner"){
+
                 $fh->DisplayRegisterUserForm();
-            }
-            elseif ($mode=="SearchPatient")
-            {
-                $fh->DisplaySearchForm();
+                }else{
+                    echo "This function is just for the system owner!";
+                }
             }
 
             if (isset($_POST['submitSearch']))

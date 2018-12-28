@@ -7,8 +7,15 @@ $fh = new FormHandler();
 $imgR= new ImageResizer();
 $jh = new JournalHandler();
 $crypt = new Encryption;
+?>
 
-if (isset($_GET['mode'])) {
+<?php
+if (!isset($_GET['mode'])) {
+    echo "<div class='border' style='width: 60%; margin: auto; text-align: center '>
+<h4 class='text-dark center '>Find patienten via searchbar for at oprette ny journal eller se/opdater en eksisterende journal</h4>
+    </div>";
+}else{
+
     $mode = $_GET['mode'];
 
     if($mode=="OpretJournal"){

@@ -95,8 +95,7 @@ nav ul li {
 }
 
 .container {
-    padding-top: 5px;
-    padding-bottom: 10px;
+    padding: 5px 35px 10px 35px;
     background-color: #f9f9f9;
     min-height: 700px;
     border-radius: 10px;
@@ -106,7 +105,6 @@ nav ul li {
 .img-rounded {
     width: 100%;
     margin: auto;
-
 }
 
 hr {
@@ -275,4 +273,7 @@ button:active {
 
 .banner-text p {
     color: #fff;
+}
+.d-block{
+    margin-left: -15px;
 }

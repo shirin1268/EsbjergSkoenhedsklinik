@@ -37,7 +37,7 @@ class FormHandler extends ServerHandler
 					<input class="form-control" id="exampleInputPassword1" type="password"  name="password" required>    
 				</tr>  <br>  
 				<tr>  
-					<p class="lead">Adminpass:</p>
+					<p class="lead">Admin level:</p>
 					<input class="form-control" id="exampleInputPassword1" type="password"  name="adminpass" required>
 				</tr> <br>
 				<tr>

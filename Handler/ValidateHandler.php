@@ -2,7 +2,7 @@
 
 class ValidateHandler extends ServerHandler
 {
-     static function validinput($input,$connection) {
+    static function validinput($input,$connection) {
 
         $viewtext = filter_var($input, FILTER_SANITIZE_STRING);
         $sanoutput=mysqli_real_escape_string($connection,$viewtext);
@@ -17,7 +17,15 @@ class ValidateHandler extends ServerHandler
         return $hashed_pass;
     }
 
-    
+    static function adminlevelvalidation($adminlevel){
+
+        if($adminlevel=="administrator"){
+            return $adminlevel;
+        }
+        else{
+            echo "Adminpass is not correct!";
+        }
+    }
 }
 
 

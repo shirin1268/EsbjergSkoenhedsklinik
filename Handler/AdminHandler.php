@@ -14,7 +14,7 @@ class AdminHandler extends ServerHandler
         if (mysqli_num_rows($result) > 0)
         {
             while ($row = mysqli_fetch_assoc($result))
-                if ($row["Adminlevel"] == 1)
+                if ($row["Adminlevel"] == "owner"|| $row["Adminlevel"] == "administrator")
                 {
                     echo "<h2 class='float-left'>Velkommen <br> " . $_SESSION['username'] ."</h2>";
                 }
@@ -23,6 +23,7 @@ class AdminHandler extends ServerHandler
 
         }
     }
+
     function confirm_logged_in()
     {
         if (!logged_in())
@@ -58,6 +59,7 @@ class AdminHandler extends ServerHandler
                 {
                     $_SESSION['adminID'] = $found_user['adminID'];
                     $_SESSION['username'] = $found_user['username'];
+                    $_SESSION['Adminlevel']=$found_user['Adminlevel'];
                 }
 
                 redirect_to("velkommen.php");
