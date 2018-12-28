@@ -34,16 +34,15 @@ if (isset($_POST['RegisterNewUser']))
 
         if($ua->RegisterNewUser($fornavn,$efternavn,$email,$username, $password,$adminpass)==true)
         {
-            echo "<div class='alert alert-success'>User was created.</div>";
+            echo "<div class='alert alert-success'><strong>Fint!</strong>En ny bruger er oprettet.</div>";
         }
 
         // if unable to create the product, tell the user
         else{
-            echo "<div class='alert alert-danger'>Unable to create new user.</div>";
+            echo "<div class='alert alert-danger'><strong>Beklager!</strong> Det er ikke muligt at oprette brugeren.</div>";
         }
     }
 
-// redirect_to("velkommen.php");
 }
 
 if (isset($_POST['RegisterNewPatient']))
@@ -71,16 +70,16 @@ if (isset($_POST['RegisterNewPatient']))
 
         if( $pa->RegisterNewPatient($fornavn ,$efternavn , $email, $tlf , $cpr, $alder, $gender)==true)
         {
-            echo "<div class='alert alert-success'>Profile was created.</div>";
+            echo "<div class='alert alert-success'><strong>Fint! </strong> ny patientprofil er oprettet.</div>";
         }
         else{
-            echo "<div class='alert alert-danger'>Unable to create new profile.</div>";
+            echo "<div class='alert alert-danger'><strong>Beklager!</strong> Det er ikke muligt at oprette profil til denne patient.</div>";
         }
 
         }
     else
         {
-        echo "The cpr number is INVALID!!!!: ".$_POST["cpr"];
+        echo "<div class='alert alert-danger'>Det <strong>CPR-nr</strong> ligner ikke et rigtig CPR-nr!!!!:<strong> ".$_POST["cpr"]. "</strong></div>";
         }
     }
 

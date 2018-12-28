@@ -115,6 +115,7 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
         $connection = $this->dbConnect();
         $sql="DELETE FROM `picture` WHERE `pictureID`= '$id' ";
         $stmt= $connection->prepare($sql);
+
         if($stmt->execute()){
             return true;
         }else{
@@ -122,4 +123,18 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
         }
     }
 
+    public function UpdatePatientProfile($fornavn ,$efternavn , $email, $tlf , $cpr,$newcpr, $alder, $gender){
+        $connection = $this->dbConnect();
+        $sql="UPDATE `patient` 
+SET `fornavn`=?,`efternavn`=?,`email`=?,
+`tlf`=?,`CPR`=?,`alder`=?,`gender`=? WHERE `CPR`= '$cpr'";
+        $stmt=$connection->prepare($sql);
+        $stmt->bind_param("sssssss",$fornavn ,$efternavn , $email, $tlf , $newcpr, $alder, $gender);
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

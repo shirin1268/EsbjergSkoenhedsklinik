@@ -17,13 +17,14 @@ class ValidateHandler extends ServerHandler
         return $hashed_pass;
     }
 
-    static function adminlevelvalidation($adminlevel){
+    static function adminlevelvalidation($adminlevel)
+    {
 
         if($adminlevel=="administrator"){
             return $adminlevel;
         }
         else{
-            echo "Adminpass is not correct!";
+            echo "<div class='alert alert-danger'><strong>Admin level</strong> er ikke korrekt!</div>";
         }
     }
 }

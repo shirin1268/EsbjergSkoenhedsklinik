@@ -8,27 +8,23 @@ $fh = new FormHandler();
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link text-white" href="createJournal.php">Opret journal<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="velkommen.php"><i class="fas fa-home"></i> Forside</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white"  href="addPicture.php"> Tilføj billeder </a>
+                <a class="nav-link text-white" href="imageGalleri.php"><i class="fas fa-images"></i> Se Album </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="displayJournal.php"> Se journal </a>
+                <a class="nav-link text-white" target="_blank"
+                   href="http://www.google.com/calendar/event?action=TEMPLATE&text=Example%20Event&dates=20131124T010000Z/20131124T020000Z&details=Event%20Details%20Here&location=123%20Main%20St%2C%20Example%2C%20NY">
+                    <i class="fas fa-calendar-alt"></i> Google Calender</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="imageGalleri.php"> Se Album </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&text=Example%20Event&dates=20131124T010000Z/20131124T020000Z&details=Event%20Details%20Here&location=123%20Main%20St%2C%20Example%2C%20NY">Google Calender</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="logout.php">Log ud</a>
+                <a class="nav-link text-white" href="logout.php"><i class="fas fa-sign-out-alt"></i> Log ud</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="" method="post">
-            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Søg patienten her" aria-label="Search" required>
             <button class="btn btn-outline-light my-2 my-sm-0" name="submitSearch" type="submit">
                 <i class="fas fa-search"></i>
             </button>

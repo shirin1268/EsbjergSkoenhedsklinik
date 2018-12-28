@@ -13,7 +13,8 @@ $crypt = new Encryption;
 if (!isset($_GET['mode'])) {
     echo "<div class='border' style='width: 60%; margin: auto; text-align: center '>
 <h4 class='text-dark center '>Find patienten via searchbar for at oprette ny journal eller se/opdater en eksisterende journal</h4>
-    </div>";
+    </div>
+      ";
 }else{
 
     $mode = $_GET['mode'];
@@ -31,7 +32,7 @@ if (!isset($_GET['mode'])) {
     }
        elseif ($mode=="ShowJournal")
        {
-           $encoded = trim($_GET['cpr']) ;
+           $encoded = trim($_GET['cpr']);
 
            $behandlinger = $jh->displayJournal($encoded);
 
@@ -44,29 +45,26 @@ if (!isset($_GET['mode'])) {
 <table class='table'>
    <tr class='table-warning'>
        <th scope='row'>Patientsnavn: </th>
-        <td style='text-transform:capitalize'>  " . $name['fornavn'] . "  ".$name['efternavn'] . "</td>
-    </tr>
-    <tr class='shadow p-3 mb-5 bg-white rounded'>
-       <th scope='row'>Tel: </th>
-        <td scope='row'> ".$name['tlf'] . "</td>
-    </tr>
-    <tr class='shadow p-3 mb-5 bg-white rounded'>
+       <th scope='row'>Tel: </th> 
        <th scope='row'>Email: </th>
-        <td scope='row'> ".$name['email'] . "</td>
-    </tr>
-    <tr class='shadow p-3 mb-5 bg-white rounded'>
        <th scope='row'>Alder: </th>
-        <td scope='row'> ".$name['alder'] . "</td>
+       <th scope='row'>CPR nummer: </th>
     </tr>
     <tr class='shadow p-3 mb-5 bg-white rounded'>
-    <th scope='row'>CPR nummer: </th>
-        <td>  " . $cpr . " </td>
+     <td scope='row'> ".$name['tlf'] . "</td>
+     <td style='text-transform:capitalize'><strong>  " . $name['fornavn'] . "  ".$name['efternavn'] . "</strong></td>
+     <td scope='row'> ".$name['email'] . "</td>
+     <td scope='row'> ".$name['alder'] . "</td>
+     <td>  " . $cpr . " </td>
     </tr>
 </table>
+<div class='row'>
+         <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."'  class='btn btn-login'>Rediger profilen</a>
+      </div>
 <br>
-<table class='table table-hover table-responsive table-bordered'>
+<table class='table'>
 <tr class='table-warning'>
-  <th >Behandling</th>
+  <th>Behandling</th>
   <th>  Dato  </th>
   <th>Forklaring</th>
   <th>Betaling</th>
@@ -76,13 +74,20 @@ if (!isset($_GET['mode'])) {
        foreach ($behandlinger as $behandling)
        {
            echo "
-<tr>
+<tr class='shadow p-3 mb-5 bg-white rounded'>
   <td style='text-transform: capitalize'>" . $behandling['behandlingname'] . "</td>
   <td>" . $behandling['dato'] . "</td>   
-  <td>" . $behandling['description'] . "</td>
+  <td style='width:50%'>" . $behandling['description'] . "</td>
   <td>" . $behandling['betaling'] . "</td>
   <td> <a href='displayJournal.php?mode=UpdateBehandling&id=" . $behandling['behandlingID'] . "'>Ret</a> </td>
-</tr> "; }
+</tr>
+ "; }
+               echo "
+               <br>
+      <div class='row'>
+         <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."'  class='btn btn-login'>Tilføj Behandling</a>
+      </div>
+    <br>";
 
 echo "
  </table>";
@@ -94,9 +99,10 @@ echo "
                echo "
 
 <br>
-           <table class='table table-hover table-responsive table-bordered'>
+           <table class='table'>
                <tr class='table-warning'>
-                   <th>Dato & kategori</th>
+                   <th> Dato </th>
+                   <th>Kategori</th>
                    <th>Picture</th>
                    <th>Title</th>
                    <th></th>
@@ -105,81 +111,111 @@ echo "
                foreach ($pictures as $image)
                {
                    echo "
-<tr>
-<td>" . $image['dato'] . "<br>" . $image['picturekategori'] . "</td>
-<td><img id='myImg' class='img-thumbnail' src='img/" . $image['picture'] . "' alt='" . $image['picturetitle'] . "'></td>
+<tr class='shadow p-3 mb-5 bg-white rounded'>
+<td style='width:13%'>" . $image['dato'] . "</td>
+<td style='width:13%'>" . $image['picturekategori'] . "</td>
+<td style='width:50%'><img id='myImg' class='img-thumbnail' src='img/" . $image['picture'] . "' alt='" . $image['picturetitle'] . "'></td>
 <td> " . $image['picturetitle'] . "</td>
 <td><a href='displayJournal.php?mode=UpdatePicture&id=" . $image['pictureID'] . "' >Ret/Slet</a></td>
  </tr>
 
  ";
                }
-           echo " </table>
-    <br>
+               echo "
+               <br>
       <div class='row'>
-         <a href='createJournal.php'  class='btn btn-login float-right'>Tilføj Behandling</a>
+         <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."'  class='btn btn-login'>Tilføj Billede</a>
       </div>
-    <br>
+    <br>";
+
+           echo " </table>
+    
     ";
            }
        }
-           if ($mode == "UpdateBehandling")
-           {
-               $id = trim($_GET['id']);
-               $fh->UpdateBehandlingForm($id);
+    if ($mode=="AddPicture")
+    {
+        $encoded = trim($_GET['cpr']) ;
 
-               if (isset($_POST["UpdateBehandling"]))
-               {
-                   $connection = $sh->dbConnect();
-                   $behandlingname =ValidateHandler::validinput($_POST["behandlingname"],$connection);
-                   $betaling =ValidateHandler::validinput( $_POST["betaling"],$connection);
-                   $description =ValidateHandler::validinput($_POST["description"],$connection) ;
-                   $dato = $_POST["dato"];
-                   $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
-                   if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
-                   {
-                       echo "<div class='alert alert-success'>Updated.</div>";
-                   } else {
-                       echo "<div class='alert alert-danger'>Unable to update.</div>";
-                   }
-               }
+        $patient = $jh->displaypatientname($encoded);
+        $navn= $patient["fornavn"];
+        $efternavn = $patient["efternavn"];
 
-           }
+        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
-           if ($mode == "UpdatePicture")
-           {
-               $id = trim($_GET['id']);
-               $fh->UpdatePictureForm($id);
+        $fh->AddPictureForm($cpr,$navn,$efternavn);
 
-               if (isset($_POST["UpdateImg"]))
-               {
-                   $connection = $sh->dbConnect();
-                   $kategori = ValidateHandler::validinput($_POST['kategori'], $connection);
-                   $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
-                   $dato = ValidateHandler::validinput($_POST['dato'],$connection);
-                   $title = ValidateHandler::validinput($_POST['title'], $connection);
+    }elseif ($mode=="UpdateProfile")
+    {
+        $encoded = trim($_GET['cpr']) ;
 
-                   if ($jh->UpdatePicture($id, $kategori, $encoded, $dato, $title) == true)
-                   {
+        $patient = $jh->displaypatientname($encoded);
+        $navn= $patient["fornavn"];
+        $efternavn = $patient["efternavn"];
+        $email=$patient["email"];
+        $tel=$patient["tlf"];
+        $alder=$patient["alder"];
+        $køn=$patient["gender"];
+
+        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
+
+        $fh->UpdateProfileForm($cpr,$encoded,$navn,$efternavn,$email,$tel,$alder,$køn);
+
+    }elseif ($mode == "UpdateBehandling")
+    {
+        $id = trim($_GET['id']);
+        $fh->UpdateBehandlingForm($id);
+
+        if (isset($_POST["UpdateBehandling"]))
+        {
+            $connection = $sh->dbConnect();
+            $behandlingname =ValidateHandler::validinput($_POST["behandlingname"],$connection);
+            $betaling =ValidateHandler::validinput( $_POST["betaling"],$connection);
+            $description =ValidateHandler::validinput($_POST["description"],$connection) ;
+            $dato = $_POST["dato"];
+            $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
+            if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
+            {
+                echo "<div class='alert alert-success'>Updated.</div>";
+            } else {
+                echo "<div class='alert alert-danger'>Unable to update.</div>";
+            }
+        }
+    } elseif ($mode == "UpdatePicture")
+    {
+        $id = trim($_GET['id']);
+        $fh->UpdatePictureForm($id);
+
+        if (isset($_POST["UpdateImg"]))
+        {
+            $connection = $sh->dbConnect();
+            $kategori = ValidateHandler::validinput($_POST['kategori'], $connection);
+            $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
+            $dato = ValidateHandler::validinput($_POST['dato'],$connection);
+            $title = ValidateHandler::validinput($_POST['title'], $connection);
+
+            if ($jh->UpdatePicture($id, $kategori, $encoded, $dato, $title) == true)
+            {
 
                        echo "<div class='alert alert-success'>Image information updated!.</div>";
                    } else {
                        echo "<div class='alert alert-danger'>Unable to update image information.</div>";
                    }
-               }
-           }
+        }
+        elseif (isset($_POST["DeleteImg"]))
+        {
+                   $id = trim($_GET['id']);
+                   if ($jh->DeletePicture($id) == true)
+                   {
+                       echo "<div class='alert alert-success'>Billedet er slettet.</div>";
+                   } else {
+                       echo "<div class='alert alert-danger'>Det er ikke muligt at slette billedet!.</div>";
+                   }
 
-           elseif (isset($_POST["DeleteImg"]))
-           {
-               $id = trim($_GET['id']);
-               if ($jh->DeletePicture($id) == true)
-               {
-                   echo "<div class='alert alert-success'>Image deleted.</div>";
-               } else {
-               echo "<div class='alert alert-danger'>Unable to delete image.</div>";
-               }
+        }
+    }
 
-           }
+
 }
 
 include_once "footer.php";

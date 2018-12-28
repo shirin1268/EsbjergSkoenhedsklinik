@@ -6,11 +6,8 @@ include_once "menu.php";
 $fh = new FormHandler();
 $sh = new ServerHandler();
 $imgh = new ImageResizer();
-?>
 
-<h4> Tilføj billede via denne form</h4>
-<?php
-$fh->AddPictureForm();
+
 define("MAX_SIZE" , "30000");
 $upmsg = array();
 if(isset($_POST['UploadImg'])) {
@@ -63,26 +60,8 @@ if(isset($_POST['UploadImg'])) {
 foreach($upmsg as $msg){
     echo "<div class='alert alert-secondary'>$msg</div>";
 }
-?>
-
-<h4> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
-<form id="createJ" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
-    <table class='table table-hover table-responsive table-bordered'>
-
-        <tr class="lead font-weight-normal">
-Kategori name
-<input name="kategori" class='form-control'>
-        </tr><br>
-        <tr>
-                <button type="submit" name="CreateKategori" class="btn btn-login float-right">Create ny kategori for billeder </button>
-        </tr><br><br>
-
-    </table><br>
-</form>
 
 
-<?php
 if (isset($_POST['CreateKategori']))
 {
     if(

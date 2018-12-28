@@ -44,5 +44,44 @@ if (isset($_POST['CreateJournal']))
     }
 }
 
+if (isset($_POST['updatePatientProfile'])) {
+    $encrypt = new Encryption();
+$cpr=$_GET['cpr'];
+    if
+    (
+        !empty($_POST["email"]) &&
+        !empty($_POST["fornavn"]) &&
+        !empty($_POST["efternavn"]) &&
+        !empty($_POST["newcpr"])
+    ) {
+
+            $fornavn = ValidateHandler::validinput($_POST["fornavn"], $connection);
+            $efternavn = ValidateHandler::validinput($_POST["efternavn"], $connection);
+            $email = ValidateHandler::validinput($_POST["email"], $connection);
+            $tlf = ValidateHandler::validinput($_POST["tlf"], $connection);
+            $alder = ValidateHandler::validinput($_POST["alder"], $connection);
+            $gender = ValidateHandler::validinput($_POST["gender"], $connection);
+
+
+            $newcpr = $encrypt->encrypt_decrypt('encrypt', $_POST["newcpr"]);
+        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $newcpr;
+
+            if ($jh->UpdatePatientProfile($fornavn, $efternavn, $email, $tlf, $cpr ,$newcpr, $alder, $gender) == true) {
+                echo "<div class='alert alert-success'><strong>Fint! </strong> Patientprofilen er opdateret succesfully.
+                <a href=". htmlspecialchars($previous_page). ">Return</a></div>";
+
+            }
+
+            else {
+                echo "<div class='alert alert-danger'><strong>Beklager!</strong> Patientprofilen kan ikke blive opdateret.
+                      <a href=". htmlspecialchars($previous_page). ">Return</a>
+                      </div>";
+
+            }
+
+        }
+
+}
+
 include_once "footer.php";
 ?>

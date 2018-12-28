@@ -5,10 +5,6 @@ class UserAccountHandler extends ServerHandler
 {
     private $table_name= "users";
 
-
-
-
-
     public function RegisterNewUser($fornavn,$efternavn,$email,$username, $password,$adminpass)
     {
         $connection = $this->dbConnect();

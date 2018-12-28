@@ -16,6 +16,7 @@ $ah = new AdminHandler();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <title><?php echo $page_title; ?></title>
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -47,9 +48,9 @@ $ah = new AdminHandler();
             </div>
         </div>
         <?php
-            if ($page_title != "Velkomst page" && $page_title != "Admin login") {
+    /*        if ($page_title != "Velkomst page" && $page_title != "Admin login") {
                 echo '<a class="text-dark" href="velkommen.php"><h5>Tilbag til forside</h5></a>';
-            }
+            }*/
         ?>
         <hr>
 

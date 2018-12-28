@@ -11,85 +11,100 @@ class FormHandler extends ServerHandler
     public function DisplayRegisterUserForm()
     {
 
-        echo '<p class="display-4">Registrer en ny Admin</p>
+        echo "<p class='display-4'>Registrer en ny Admin</p>
 
-			<form  action="" method="post" >
-			    <table class="table table-hover table-responsive table-bordered">
-
-				<tr >
-					<p class="lead">Førnavn:</p>
-					 <input class="form-control" id="exampleInputFornavn"  type="text" name="fornavn" required/>
-				</tr><br>
-				<tr>	     
-					<p class="lead">Efternavn:</p>
-					 <input type="text" name="efternavn" class="form-control" id="exampleInputEfternavn" required/>    
-                </tr><br>
-                <tr>
-                	<p class="lead">Email:</p>
-					<input type="email" name="email" placeholder="eksempl@domain.com"  class="form-control" id="exampleInputEmail">
-				</tr> <br> 
-				<tr>
-					 <p class="lead">Brugernavn:</p>
-					  <input type="text" name="username" class="form-control" id="exampleInputuser" required/>
-				</tr><br>
-				<tr>
-					<p class="lead">Password:</p>
-					<input class="form-control" id="exampleInputPassword1" type="password"  name="password" required>    
-				</tr>  <br>  
-				<tr>  
-					<p class="lead">Admin level:</p>
-					<input class="form-control" id="exampleInputPassword1" type="password"  name="adminpass" required>
-				</tr> <br>
-				<tr>
-					<button type="submit" class="btn btn-login float-right" name="RegisterNewUser" value="RegisterNewUser" >Register</button>
-				</tr>
-			    </table>
-			</form> ';
+			<form  action='' method='post'' >
+			    <div class='form-row'>
+				<div class='form-group col-md-6'>
+					<p>Førnavn:</p>
+					 <input class='form-control' id='exampleInputFornavn'  type='text' name='fornavn' required/>
+				</div><br>
+				<div class='form-group col-md-6'>	     
+					<p>Efternavn:</p>
+					 <input type='text' name='efternavn' class='form-control' id='exampleInputEfternavn' required/>    
+                </div>
+                </div>
+                <div class='form-row'>
+				<div class='form-group col-md-6'>
+                	<p>Email:</p>
+					<input type='email' name='email' placeholder='eksempl@domain.com'  class='form-control' id='exampleInputEmail'>
+				</div>  
+				<div class='form-group col-md-6'>
+					 <p>Brugernavn:</p>
+					  <input type='text' name='username' class='form-control' id='exampleInputuser' required/>
+				</div>
+				</div>
+				<div class='form-row'>
+				<div class='form-group col-md-6'>
+					<p>Password:</p>
+					<input class='form-control' id='exampleInputPassword1' type='password'  name='password' required>    
+				</div>  <br>  
+				<div class='form-group col-md-6'>  
+					<p>Admin level:</p>
+					<input class='form-control' id='exampleInputPassword1' type='password'  name='adminpass' required>
+				</div> </div>
+				<div class='form-row'>
+					<button type='submit' class='btn btn-login float-right' name='RegisterNewUser' value='RegisterNewUser' >Register</button>
+				</div>
+			  
+			</form> ";
 
     }
 
     public function DisplayRegisterPatientForm(){
 
-        echo '<p class="display-4">Registrer en ny kunde</p>
-<form action="" method="post" >
-		<table class="table table-hover table-responsive table-bordered">
-				
-				<tr>
-				<p class="lead">Førnavn:</p>
-					   <input class="form-control" id="exampleInputEmail1" type="text" name="fornavn" maxlength="30" value="" required/>
-					</tr><br>
-				<tr>
-					<p class="lead">Efternavn:</p>
-					<input class="form-control" id="exampleInputEmail1" type="text" name="efternavn" maxlength="30" value="" >
-				</tr><br>
-				<tr>
-					<p class="lead">Alder:</p>   
-					 <input class="form-control" id="exampleInputEmail1" type="text" name="alder" maxlength="30" value="" >
-				</tr><br>
-				<tr>
-					<p class="lead">Køn:</p>   
-					 <input class="form-control" id="exampleInputEmail1" type="text" name="gender" maxlength="30" value="" />
-				</tr><br>
-				<tr>
-					<p class="lead">CPR nr.:</p> 
-					 <input class="form-control" id="exampleInputEmail1" type="text" name="cpr" placeholder="000000000000" maxlength="30" value="" required/> 
-				</tr><br>
-				<tr>
-					<p class="lead">Email:</p>   
-					<input class="form-control" id="exampleInputEmail1" type="email" name="email" placeholder="eksempl@domain.com" maxlength="30" value="">
-				</tr><br>
-				<tr>
-					<p class="lead">Tlf:</p>  
-					 <input class="form-control" id="exampleInputEmail1" type="tel" placeholder="telefone" name="tlf" >  
-				</tr>
-				<br>
+        echo "
+<div class='col-md-auto' style='min-width: 80%'>
+    <form id='createJ' action='' method='post'>
+        <p class='display-4'>Opret profile til ny kunde</p>
 
-					<tr>            
-					<button class="btn btn-login float-right" type="submit" name="RegisterNewPatient" value="RegisterNewPatient" > Register ny kunde</button>
-					</tr>
-		</table>		
-		
-</form> ';
+				<div class='form-row'>
+				<div class='form-group col-md-6'>
+				<p>Førnavn:</p>
+					   <input class='form-control'  type='text' name='fornavn'  value='' required/>
+					</div>
+				<div class='form-group col-md-6'>
+					<p>Efternavn:</p>
+					<input class=form-control type=text name=efternavn  value=' ' >
+				</div>
+				</div>
+				
+				<div class='form-row'>
+				<div class='form-group col-md-6'>
+					<p>Alder:</p>   
+					 <input class='form-control' type='text' name='alder'  value=' ' >
+				</div>
+				<div class='form-group col-md-6'>
+					<p>Email:</p>   
+					<input class='form-control' type='email' name='email'  value=''>
+				</div>
+				</div>
+				
+				<div class='form-row'>
+				<div class='form-group col-md-4'>
+					<p>CPR nr.:</p> 
+					 <input class='form-control' type='text' name='cpr'  value='' required/> 
+				</div>
+				<div class='form-group col-md-4'>
+					<p>Køn:</p> 
+					  <select class='form-control' name='gender'>
+					     <option>Male</option>
+					     <option>Female</option>
+                      </select> 
+				</div>
+				<div class='form-group col-md-4'>
+					<p>Tlf:</p>  
+					 <input class='form-control'  type='tel'  name='tlf' value='' >  
+				</div></div>
+				
+
+					<div class='form-row'>            
+					<button class='btn btn-login float-right' type='submit' name='RegisterNewPatient' value='RegisterNewPatient' >Register ny patient</button>
+					</div>
+			
+    </form>
+
+</div>";
     }
 
     public function readCPR()
@@ -139,8 +154,8 @@ class FormHandler extends ServerHandler
     public function DisplaySearchResult($searchresult){
 
         echo 
-        "<div class='table-responsive'>
-            <table class='table table-bordered'>
+        "<div >
+            <table class='table'>
                 
                 <tr>
                 <th>Fornavn</th>
@@ -176,54 +191,63 @@ class FormHandler extends ServerHandler
         echo "</table></div>";
     }
 
-    public function AddPictureForm(){
+    public function AddPictureForm($cpr,$navn,$efternavn){
         echo "
         <form action='addPicture.php' method='post' enctype='multipart/form-data'>
-       <table class='table table-hover table-responsive table-bordered'>
-            <tr>
+        <h4>Tilføj billeder til:"." <strong style='color:#DE6262'>" .$navn ." ".$efternavn. "</strong> journal</h4>
+            <div class='form-row'>
               CPR:
-              <select class='form-control' name='cpr'>";
-        echo $this->readCPR();
-        echo "</select>
-           </tr><br>
-             <tr>
+              <input type='text' name='cpr' class='form-control' value='" . $cpr . "' >
+           </div><br>
+             <div class='form-row'>
               Behandlingsdato:
              <br>
              <input type='date' name='dato' class='form-control' >
-           </tr><br>
-           <tr>
+           </div><br>
+          <div class='form-row'>
              Kategori:
                 <select class='form-control' name='kategori'>";
         echo $this->readcategory();
         echo "</select>
               
-           </tr><br>
-           <tr>
-              Tilføj filer:<br>
-              <input name='filetoupload' type='file'/>
-           </tr><br>
-              <tr><br>
-              Resize to:<br> 
-              <select class='browser-default' name='resizetype'>
-                 <option value='height'>Height</option>
-                 <option value='width'>Width</option>
-                 <option value='Scale'>Scale</option>
+           </div><br>
+            <div class='form-row'>
+           <div class='form-group col-md-4'>
+              Tilføj file:
+           </div>
+              <div class='form-group col-md-4'>
+              Billedstørrelse kan ændres med hensyn til:
+              </div>
+           <div class='form-group col-md-4'>
+		     Angiv størrelsen i(px or %):
+           </div>
+           </div>
+            <div class='form-row'>
+            <div class='form-group col-md-4'>
+              <input class='form-control' name='filetoupload' type='file'/>
+           </div>
+              <div class='form-group col-md-4'>
+              <select class='form-control' name='resizetype'>
+                 <option value='height'>Højden </option>
+                 <option value='width'>Bredden</option>
+                 <option value='Scale'>Skaleres i procent:</option>
                </select>
-           </tr><br><br>
-           <tr>
-		     Size (px or %):<br>
-	         <input type='number' name='size' value='' class='validate'>
-           </tr><br><br>
-           <tr>
+               </div>
+           <div class='form-group col-md-4'>
+	         <input type='number' name='size' value='' class='form-control'>
+           </div>
+           </div>
+          
+           <div class='form-row'>
               Title for Pictures: 
               <textarea name='title' class='form-control'></textarea>
-	       </tr><br>
+	       </div><br>
 	   
-           <tr>
+           <div class='form-row'>
                 <button class='btn btn-login float-right' name='UploadImg' value='UploadImg'>
                       Upload
                   </button>
-           </tr><br>
+           </div><br>
   </table> 
 </form>";
     }
@@ -372,6 +396,81 @@ class FormHandler extends ServerHandler
 
 </div>";
 }
+
+    public function DisplayOpretKategoriForm(){
+echo "
+        <h4> Hvis du ikke kan finde den relevante kategori til billedet så opret den her: </h4>
+<form id='createJ' action='addPicture.php' method='post'>
+
+    <table class='table table-hover table-responsive table-bordered'>
+
+        <tr class='lead font-weight-normal'>
+        Kategori name
+        <input name='kategori' class='form-control'>
+        </tr><br>
+        <tr>
+                <button type='submit' name='CreateKategori' class='btn btn-login float-right'>Create ny kategori for billeder </button>
+        </tr><br><br>
+
+    </table><br>
+</form>"  ;
+    }
+
+    public function UpdateProfileForm($cpr,$encoded,$navn,$efternavn,$email,$tel,$alder,$køn){
+        echo "
+<div class='col-md-auto' style='min-width: 80%'>
+    <form id='createJ' action='createJournal.php?&cpr=".$encoded."' method='post'>
+        <h4>Rediger profilen til:"." " .$navn ." ".$efternavn."</h4>
+
+				<div class='form-row'>
+				<div class='form-group col-md-6'>
+				<p>Førnavn:</p>
+					   <input class='form-control'  type='text' name='fornavn'  value='".$navn." ' required/>
+					</div>
+				<div class='form-group col-md-6'>
+					<p>Efternavn:</p>
+					<input class=form-control type=text name=efternavn  value='".$efternavn." ' >
+				</div>
+				</div>
+				
+				<div class='form-row'>
+				<div class='form-group col-md-6'>
+					<p>Alder:</p>   
+					 <input class='form-control' type='text' name='alder'  value='".$alder." ' >
+				</div>
+				<div class='form-group col-md-6'>
+					<p>Køn:</p> 
+					  <select class='form-control' name='gender'>
+					  <option>".$køn."</option>
+					     <option>Male</option>
+					     <option>Female</option>
+                      </select> 
+				</div>
+				</div>
+				
+				<div class='form-row'>
+				<div class='form-group col-md-4'>
+					<p>CPR nr.:</p> 
+					 <input class='form-control' type='text' name='newcpr'  value='".$cpr."'> 
+				</div>
+				<div class='form-group col-md-4'>
+					<p>Email:</p>   
+					<input class='form-control' type='email' name='email'  value='".$email." '>
+				</div>
+				<div class='form-group col-md-4'>
+					<p>Tlf:</p>  
+					 <input class='form-control'  type='tel'  name='tlf' value='".$tel." ' >  
+				</div></div>
+				
+
+					<div class='form-row'>            
+					<button class='btn btn-login float-right' type='submit' name='updatePatientProfile' value='updatePatientProfile' >Opdater profilen</button>
+					</div>
+			
+    </form>
+
+</div>";
+    }
 
 
 }
