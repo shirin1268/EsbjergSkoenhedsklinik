@@ -132,7 +132,7 @@ if (isset($_POST['RegisterNewPatient']))
 
                 $fh->DisplayRegisterUserForm();
                 }else{
-                    echo "This function is just for the system owner!";
+                    echo "<div class='alert alert-danger'>This function is just for the <strong>system owner!</strong> </div>";
                 }
             }
 

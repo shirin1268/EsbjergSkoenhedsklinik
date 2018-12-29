@@ -225,7 +225,7 @@ class FormHandler extends ServerHandler
               Tilføj file:
            </div>
               <div class='form-group col-md-4'>
-              Billedstørrelse kan ændres med hensyn til:
+              Billedstørrelsen kan ændres med hensyn til:
               </div>
            <div class='form-group col-md-4'>
 		     Angiv størrelsen (i pixel eller i procent):
@@ -274,39 +274,38 @@ class FormHandler extends ServerHandler
         $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
         echo "
         <form action='' method='post'>
-        <table class='table table-hover table-responsive table-bordered'>
-            <tr>
+        <h5>Opdater behandlingen til patienten med CPR-nr: <strong>". $cpr."</strong></h5><br>
+        <div class='form-row'>
+            <div class='form-group col-md-3'>
               CPR:
-              <select class='form-control' name='cpr'>
-              <option>".$cpr."</option>";
-        echo $this->readCPR();
-        echo "</select>
-           </tr><br>
-             <tr>
+              <input type='text'  class='form-control' name='cpr' value='". $cpr."'>
+           </div><br>
+             <div class='form-group col-md-3'>
               Behandlingsdato:<br>
               <input name='dato' type='date'  class='form-control' value='".$row['dato']."'>
-           </tr><br>
+           </div><br>
         
-           <tr>
+           <div class='form-group col-md-3'>
               Behandlingsnavn:<br>
               <input name='behandlingname'  class='form-control' type='text' value='".$row['behandlingname']."'>
-           </tr><br>
-           <tr>
+           </div><br>
+           <div class='form-group col-md-3'>
               Betaling:<br>
               <input name='betaling'  class='form-control' type='text' value='".$row['betaling']."'>
-           </tr><br>
+           </div></div><br>
               
-           <tr>
+           <div class='form-row'>
+            
               Forklaring: <br>
 	          <textarea name='description' class='form-control' row='10'>".$row['description']."</textarea>
-	       </tr><br>
+	       </div><br>
 	   
-           <tr>
+           <div class='form-row'>
                   <button onclick='return confirm(\"Er du sikker på at du vil opdatere denne behandling ? \") '
                      class='btn btn-login float-right ' name='UpdateBehandling' value='UpdateBehandling'>
                       Update
                   </button>
-           </tr><br>
+           </div><br>
            </table>
 </form> ";
     }
@@ -323,46 +322,47 @@ class FormHandler extends ServerHandler
         $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
 
         echo "
+<h5>Opdater billedetsoplysninger her eller slet billedet</h5><br>
         <form action='' method='post'>
-        <table class='table table-hover table-responsive table-bordered'>
-            <tr>
+            <div class='form-row'>
+            <div class='form-group col-md-4'>
               CPR:
-              <select class='form-control' name='cpr'>
-              <option>".$cpr."</option>";
-              echo $this->readCPR();
-        echo "</select>
-           </tr><br>
-             <tr>
+              <input type='text'  class='form-control' name='cpr' value='". $cpr."'>
+           </div><br>
+             <div class='form-group col-md-4'>
               Behandlingsdato:<br>
               <input name='dato' type='text'  class='form-control' value='".$row['dato']."'>
-           </tr><br>
-           <tr>
+           </div><br>
+           <div class='form-group col-md-4'>
               Kategori:<br>
                 <select class='form-control' name='kategori'>
                  <option>".$row['picturekategori']."</option>";
         echo $this->readcategory();
         echo "</select>
-           </tr><br>
-           <tr>
-              Tilføj filer:<br>
+           </div></div><br>
+           <div class='form-row'>
+            <div class='form-group col-md-6'>
+              <br>
               <img src='img/".$row['picture']."'></br></br>
-           </tr><br>
+           </div><br>
            
-           <tr>
+           <div class='form-group col-md-6'>
              Title for Pictures:<br>
 	          <input name='title' class='form-control' value='".$row['picturetitle']."'>
-	       </tr><br>
-           <tr>
-           <button class='btn btn-login float-right' name='UpdateImg' value='UpdateImg'>
-                      Update
-                  </button>
-                  <button class='btn btn-login float-right' 
+	       </div></div><br>
+           <div class='form-row'>
+           <div class='form-group col-md-3'>
+           <button class='btn btn-login' name='UpdateImg' value='UpdateImg'>
+                      Opdater billedets oplysninger
+                  </button></div>
+                  <div class='form-group col-md-2'>
+                  <button class='btn btn-login' 
                           onclick='return confirm(\"Er du sikker på at du vil slette denne billede?\") '
                           name='DeleteImg' value='DeleteImg'>
                       Slet billede
-                  </button>
-           </tr><br>
-           </table>
+                  </button></div>
+           </div><br>
+          
 </form> ";}
 
     public function DisplayCreateJournalForm($cpr,$navn,$efternavn){

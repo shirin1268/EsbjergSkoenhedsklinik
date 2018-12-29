@@ -15,7 +15,7 @@ if (!isset($_GET['mode'])) {
 <br><h4 class='alert-heading'>Du skal lede efter patienten først!</h4>
 <hr>
 <p class='mb-0'>
-<strong>Find patienten</strong> via <strong>søgfeltet</strong> for at <strong>oprette</strong> ny journal eller <strong>
+<strong>Find patienten</strong> via <strong>søgfeltet</strong> hver gang du vil <strong>oprette</strong> ny journal eller <strong>
 se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</strong>
     </p><br><br>
     </div>
@@ -154,6 +154,7 @@ echo "
     {
         $encoded = trim($_GET['cpr']) ;
 
+
         $patient = $jh->displaypatientname($encoded);
         $navn= $patient["fornavn"];
         $efternavn = $patient["efternavn"];
@@ -179,11 +180,13 @@ echo "
             $description =ValidateHandler::validinput($_POST["description"],$connection) ;
             $dato = $_POST["dato"];
             $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
+            $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
+
             if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
             {
-                echo "<div class='alert alert-success'>Updated.</div>";
+                echo "<div class='alert alert-success'>Updated.<a href=". htmlspecialchars($previous_page). ">  Return</a></div>";
             } else {
-                echo "<div class='alert alert-danger'>Unable to update.</div>";
+                echo "<div class='alert alert-danger'>Unable to update.<a href=". htmlspecialchars($previous_page). ">  Return</a></div>";
             }
         }
     } elseif ($mode == "UpdatePicture")
@@ -198,13 +201,16 @@ echo "
             $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
             $dato = ValidateHandler::validinput($_POST['dato'],$connection);
             $title = ValidateHandler::validinput($_POST['title'], $connection);
+            $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
 
             if ($jh->UpdatePicture($id, $kategori, $encoded, $dato, $title) == true)
             {
 
-                       echo "<div class='alert alert-success'>Image information updated!.</div>";
+                       echo "<div class='alert alert-success'>Image information updated!.
+                             <a href=". htmlspecialchars($previous_page). ">Return</a></div>";
                    } else {
-                       echo "<div class='alert alert-danger'>Unable to update image information.</div>";
+                       echo "<div class='alert alert-danger'>Unable to update image information.
+                              <a href=". htmlspecialchars($previous_page). ">Return</a></div>";
                    }
         }
         elseif (isset($_POST["DeleteImg"]))
@@ -212,9 +218,9 @@ echo "
                    $id = trim($_GET['id']);
                    if ($jh->DeletePicture($id) == true)
                    {
-                       echo "<div class='alert alert-success'>Billedet er slettet.</div>";
+                       echo "<div class='alert alert-success'>Billedet er slettet.<a href=". htmlspecialchars($previous_page). ">Return</a></div>";
                    } else {
-                       echo "<div class='alert alert-danger'>Det er ikke muligt at slette billedet!.</div>";
+                       echo "<div class='alert alert-danger'>Det er ikke muligt at slette billedet!.<a href=". htmlspecialchars($previous_page). ">Return</a></div>";
                    }
 
         }
