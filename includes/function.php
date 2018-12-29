@@ -1,6 +1,6 @@
 <?php
-function redirect_to( $location) {
+function redirect_to($location) {
 
-    header("refresh:5; Location:" . $location);
+    header("Location:" . $location);
     exit;
 }

@@ -11,8 +11,13 @@ $crypt = new Encryption;
 
 <?php
 if (!isset($_GET['mode'])) {
-    echo "<div class='border' style='width: 60%; margin: auto; text-align: center '>
-<h4 class='text-dark center '>Find patienten via searchbar for at oprette ny journal eller se/opdater en eksisterende journal</h4>
+    echo "<div class='alert alert-secondary' role='alert' style='width: 50%; margin: auto; text-align: center '>
+<br><h4 class='alert-heading'>Du skal lede efter patienten først!</h4>
+<hr>
+<p class='mb-0'>
+<strong>Find patienten</strong> via <strong>søgfeltet</strong> for at <strong>oprette</strong> ny journal eller <strong>
+se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</strong>
+    </p><br><br>
     </div>
       ";
 }else{
@@ -29,6 +34,18 @@ if (!isset($_GET['mode'])) {
         $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
         $fh->DisplayCreateJournalForm($cpr,$navn,$efternavn);
+    }elseif($mode=="AddPicture")
+    {
+        $encoded = trim($_GET['cpr']) ;
+
+        $patient = $jh->displaypatientname($encoded);
+        $navn= $patient["fornavn"];
+        $efternavn = $patient["efternavn"];
+
+        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
+
+        $fh->AddPictureForm($cpr,$navn,$efternavn);
+
     }
        elseif ($mode=="ShowJournal")
        {
@@ -51,8 +68,8 @@ if (!isset($_GET['mode'])) {
        <th scope='row'>CPR nummer: </th>
     </tr>
     <tr class='shadow p-3 mb-5 bg-white rounded'>
-     <td scope='row'> ".$name['tlf'] . "</td>
      <td style='text-transform:capitalize'><strong>  " . $name['fornavn'] . "  ".$name['efternavn'] . "</strong></td>
+     <td scope='row'> ".$name['tlf'] . "</td>
      <td scope='row'> ".$name['email'] . "</td>
      <td scope='row'> ".$name['alder'] . "</td>
      <td>  " . $cpr . " </td>
@@ -133,19 +150,7 @@ echo "
     ";
            }
        }
-    if ($mode=="AddPicture")
-    {
-        $encoded = trim($_GET['cpr']) ;
-
-        $patient = $jh->displaypatientname($encoded);
-        $navn= $patient["fornavn"];
-        $efternavn = $patient["efternavn"];
-
-        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
-
-        $fh->AddPictureForm($cpr,$navn,$efternavn);
-
-    }elseif ($mode=="UpdateProfile")
+    if ($mode=="UpdateProfile")
     {
         $encoded = trim($_GET['cpr']) ;
 

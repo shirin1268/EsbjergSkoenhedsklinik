@@ -12,6 +12,9 @@ $fh = new FormHandler();
                 <a class="nav-link text-white" href="velkommen.php"><i class="fas fa-home"></i> Forside</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link text-white" href="imageGalleri.php"><i class="fas fa-grip-vertical"></i> Billede kategori </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-white" href="imageGalleri.php"><i class="fas fa-images"></i> Se Album </a>
             </li>
             <li class="nav-item">

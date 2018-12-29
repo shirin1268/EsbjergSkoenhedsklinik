@@ -155,13 +155,14 @@ class FormHandler extends ServerHandler
 
         echo 
         "<div >
-            <table class='table'>
-                
+<h4>Det er resultatet af din søgning: </h4>
+            <table>
                 <tr>
                 <th>Fornavn</th>
                 <th>Efternavn</th>
                 <th>CPR nr.</th>
                 <th>Email</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 </tr>
@@ -178,38 +179,46 @@ class FormHandler extends ServerHandler
                     <td><input name='email' value=' ". $result['email'] . " ' ></td>
                     <td>
                     <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-                    <button class='btn btn-link'  value='SeeJournal'>Se Journal</button>
+                    <button class='btn'  value='SeeJournal'>Se Journal</button>
                     </a>
                     </td>
                     <td>
                     <a name='OpretJournal' href='displayJournal.php?mode=OpretJournal&cpr=" . $result['CPR']. " '>
-                    <button class='btn btn-link'  value='CreateJournal'>Opret Journal</button>
+                    <button class='btn'  value='CreateJournal'>Opret Journal</button>
+                    </a>
+                    </td>
+                    <td>
+                    <a name='OpretJournal' href='displayJournal.php?mode=AddPicture&cpr=" . $result['CPR']. " '>
+                    <button class='btn'  value='CreateJournal'>Tilføj billede</button>
                     </a>
                     </td>
                 </tr>";
         }
-        echo "</table></div>";
+        echo "</table>
+     <br><br><hr>
+    </div>";
     }
 
     public function AddPictureForm($cpr,$navn,$efternavn){
         echo "
         <form action='addPicture.php' method='post' enctype='multipart/form-data'>
-        <h4>Tilføj billeder til:"." <strong style='color:#DE6262'>" .$navn ." ".$efternavn. "</strong> journal</h4>
+        <h4>Tilføj billeder til:"." <strong style='color:#DE6262'>" .$navn ." ".$efternavn. "</strong> journal</h4><br>
             <div class='form-row'>
+            <div class='form-group col-md-4'>
               CPR:
               <input type='text' name='cpr' class='form-control' value='" . $cpr . "' >
            </div><br>
-             <div class='form-row'>
+             <div class='form-group col-md-4'>
               Behandlingsdato:
              <br>
              <input type='date' name='dato' class='form-control' >
            </div><br>
-          <div class='form-row'>
+          <div class='form-group col-md-4'>
              Kategori:
                 <select class='form-control' name='kategori'>";
         echo $this->readcategory();
         echo "</select>
-              
+              </div>
            </div><br>
             <div class='form-row'>
            <div class='form-group col-md-4'>
@@ -219,7 +228,7 @@ class FormHandler extends ServerHandler
               Billedstørrelse kan ændres med hensyn til:
               </div>
            <div class='form-group col-md-4'>
-		     Angiv størrelsen i(px or %):
+		     Angiv størrelsen (i pixel eller i procent):
            </div>
            </div>
             <div class='form-row'>
@@ -228,16 +237,16 @@ class FormHandler extends ServerHandler
            </div>
               <div class='form-group col-md-4'>
               <select class='form-control' name='resizetype'>
-                 <option value='height'>Højden </option>
-                 <option value='width'>Bredden</option>
-                 <option value='Scale'>Skaleres i procent:</option>
+                 <option value='height'>Højden (str. skal angives i pixel) </option>
+                 <option value='width'>Bredden (str. skal angives i pixel)</option>
+                 <option value='Scale'>Skaleres (str. skal angives i procent)</option>
                </select>
                </div>
            <div class='form-group col-md-4'>
-	         <input type='number' name='size' value='' class='form-control'>
+	         <input type='number' name='size' value='' placeholder='f.eks. 200 eller 0,5' class='form-control'>
            </div>
            </div>
-          
+          <br>
            <div class='form-row'>
               Title for Pictures: 
               <textarea name='title' class='form-control'></textarea>
@@ -388,7 +397,7 @@ class FormHandler extends ServerHandler
             </tr><br>
 
             <tr>
-                <button type='submit' name='CreateJournal' class='btn btn-login float-right'>Create Journal</button>
+                <button type='submit' name='CreateJournal' class='btn btn-login float-right'>Opret journal</button>
             </tr><br><br>
 
         </table><br>
