@@ -7,9 +7,7 @@ $fh = new FormHandler();
 $imgR= new ImageResizer();
 $jh = new JournalHandler();
 $crypt = new Encryption;
-?>
 
-<?php
 if (!isset($_GET['mode'])) {
     echo "<div class='alert alert-secondary' role='alert' style='width: 50%; margin: auto; text-align: center '>
 <br><h4 class='alert-heading'>Du skal lede efter patienten først!</h4>
@@ -21,36 +19,53 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
     </div>
       ";
 }else{
+    $encoded = trim($_GET['cpr']) ;
+    $patient = $jh->displaypatientname($encoded);
+    $navn= $patient["fornavn"];
+    $efternavn = $patient["efternavn"];
+
+    $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
+
+    echo "
+    <div class='row'>
+        <div class='col-sm-3'>
+            <br/>
+            <div class='btn-group-vertical'>
+
+                <button type='button' class='btn btn-login float-right'>
+                    <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."'  class='btn btn-login'><p class='lead'> Tilføj Billede</p></a>                
+                    </button><br/>
+                <button  type='button' class='btn btn-login float-right'>
+                    <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."'  class='btn btn-login'><p class='lead'>Tilføj Behandling</p></a>                
+                    </button><br/>
+                <button type='button' class='btn btn-login float-right'>
+                    <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."'  class='btn btn-login'><p class='lead'>Rediger profilen</p></a>
+                 </button><br/>
+                <button type='button' class='btn btn-login float-right'>
+                <a href='displayJournal.php?mode=ShowJournal&cpr=" . $encoded. " ' class='btn btn-login'><p class='lead'>Se journal</p></a>
+               </button><br/>
+                <button type='button' class='btn btn-login float-right'>
+                <a href='Pdfconvert.php?cpr=" . $encoded. " ' class='btn btn-login'><p class='lead'>Vis/Download pdf</p></a>
+               </button>
+               
+            </div>
+        </div>
+
+        <div class='col-md-9'>";
+
 
     $mode = $_GET['mode'];
 
     if($mode=="OpretJournal"){
-        $encoded = trim($_GET['cpr']) ;
-
-        $patient = $jh->displaypatientname($encoded);
-        $navn= $patient["fornavn"];
-        $efternavn = $patient["efternavn"];
-
-        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
         $fh->DisplayCreateJournalForm($cpr,$navn,$efternavn);
     }elseif($mode=="AddPicture")
     {
-        $encoded = trim($_GET['cpr']) ;
-
-        $patient = $jh->displaypatientname($encoded);
-        $navn= $patient["fornavn"];
-        $efternavn = $patient["efternavn"];
-
-        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
-
         $fh->AddPictureForm($cpr,$navn,$efternavn);
 
     }
        elseif ($mode=="ShowJournal")
        {
-           $encoded = trim($_GET['cpr']);
-
            $behandlinger = $jh->displayJournal($encoded);
 
            if($behandlinger>0)
@@ -75,9 +90,7 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
      <td>  " . $cpr . " </td>
     </tr>
 </table>
-<div class='row'>
-         <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."'  class='btn btn-login'>Rediger profilen</a>
-      </div>
+
 <br>
 <table class='table'>
 <tr class='table-warning'>
@@ -92,8 +105,8 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
        {
            echo "
 <tr class='shadow p-3 mb-5 bg-white rounded'>
-  <td style='text-transform: capitalize'>" . $behandling['behandlingname'] . "</td>
-  <td>" . $behandling['dato'] . "</td>   
+  <td style='width:15%; text-transform: capitalize'>" . $behandling['behandlingname'] . "</td>
+  <td style='width:15%; font-size:12px'>" . $behandling['dato'] . "</td>   
   <td style='width:50%'>" . $behandling['description'] . "</td>
   <td>" . $behandling['betaling'] . "</td>
   <td> <a href='displayJournal.php?mode=UpdateBehandling&id=" . $behandling['behandlingID'] . "'>Ret</a> </td>
@@ -101,10 +114,7 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
  "; }
                echo "
                <br>
-      <div class='row'>
-         <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."'  class='btn btn-login'>Tilføj Behandling</a>
-      </div>
-    <br>";
+   ";
 
 echo "
  </table>";
@@ -128,8 +138,8 @@ echo "
                foreach ($pictures as $image)
                {
                    echo "
-<tr class='shadow p-3 mb-5 bg-white rounded'>
-<td style='width:13%'>" . $image['dato'] . "</td>
+<tr class='shadow bg-white rounded'>
+<td style='width:15%; font-size:12px'>" . $image['dato'] . "</td>
 <td style='width:13%'>" . $image['picturekategori'] . "</td>
 <td style='width:50%'><img id='myImg' class='img-thumbnail' src='img/" . $image['picture'] . "' alt='" . $image['picturetitle'] . "'></td>
 <td> " . $image['picturetitle'] . "</td>
@@ -139,10 +149,7 @@ echo "
  ";
                }
                echo "
-               <br>
-      <div class='row'>
-         <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."'  class='btn btn-login'>Tilføj Billede</a>
-      </div>
+     
     <br>";
 
            echo " </table>
@@ -154,16 +161,10 @@ echo "
     {
         $encoded = trim($_GET['cpr']) ;
 
-
-        $patient = $jh->displaypatientname($encoded);
-        $navn= $patient["fornavn"];
-        $efternavn = $patient["efternavn"];
         $email=$patient["email"];
         $tel=$patient["tlf"];
         $alder=$patient["alder"];
         $køn=$patient["gender"];
-
-        $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
         $fh->UpdateProfileForm($cpr,$encoded,$navn,$efternavn,$email,$tel,$alder,$køn);
 
@@ -228,5 +229,7 @@ echo "
 
 
 }
-
+echo "</div>
+</div>
+";
 include_once "footer.php";

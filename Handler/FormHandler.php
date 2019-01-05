@@ -179,19 +179,11 @@ class FormHandler extends ServerHandler
                     <td><input name='email' value=' ". $result['email'] . " ' ></td>
                     <td>
                     <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-                    <button class='btn'  value='SeeJournal'>Se Journal</button>
+                    <button class='btn'  value='SeeJournal'>Se patient profil</button>
                     </a>
                     </td>
-                    <td>
-                    <a name='OpretJournal' href='displayJournal.php?mode=OpretJournal&cpr=" . $result['CPR']. " '>
-                    <button class='btn'  value='CreateJournal'>Opret Journal</button>
-                    </a>
-                    </td>
-                    <td>
-                    <a name='OpretJournal' href='displayJournal.php?mode=AddPicture&cpr=" . $result['CPR']. " '>
-                    <button class='btn'  value='CreateJournal'>Tilføj billede</button>
-                    </a>
-                    </td>
+                    
+                    
                 </tr>";
         }
         echo "</table>
@@ -367,43 +359,39 @@ class FormHandler extends ServerHandler
 
     public function DisplayCreateJournalForm($cpr,$navn,$efternavn){
     echo "
-<div class='col-md-auto' style='min-width: 80%'>
+
     <form id='createJ' action='createJournal.php' method='post'>
         <h4>Opret journal til:"." " .$navn ." ".$efternavn."</h4>
-        <table class='table table-hover table-responsive table-bordered'>
-        <tr>
+        <div class='form-row'>
+            <div class='form-group col-md-4'>
         CPR nummer: 
         <input type='text' name='cpr' class='form-control' value='" . $cpr . "'>  
-        </tr>
-            <br>
-            <tr>
+        </div>
+             <div class='form-group col-md-4'>
                 Behandlingsdato:
-                <br>
+                
                 <input type='date' name='dato' class='form-control' >
-            </tr><br>
-            <tr>
+            </div>
+            </div>
+            <div class='form-row'>
+             <div class='form-group col-md-4'>
                 Behandlingsnavn:
                 <input type='text' name='behandlingname' class='form-control' />
-            </tr><br>
-
-            <tr>
+            </div>
+<div class='form-group col-md-4'>
+                Betaling
+                <input type='text' name='betaling' class='form-control'>
+            </div>
+            </div>
+             <div class='form-row'>
                 Beskrivelse af behandlingen:
                 <textarea type='text' name='description' class='form-control' id='exampleFormControlTextarea1' rows='10' ></textarea>
-            </tr><br>
-
-            <tr>
-                Betaling
-                <textarea name='betaling' class='form-control'></textarea>
-            </tr><br>
-
-            <tr>
+            </div><br>
+            <div class='form-row'>
                 <button type='submit' name='CreateJournal' class='btn btn-login float-right'>Opret journal</button>
-            </tr><br><br>
-
-        </table><br>
+            </div>
     </form>
-
-</div>";
+";
 }
 
     public function DisplayOpretKategoriForm(){
