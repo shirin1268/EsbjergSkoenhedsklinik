@@ -92,23 +92,40 @@ if (isset($_POST['RegisterNewPatient']))
     <div class="col-sm-4">
         <br/>
         <div class="btn-group-vertical">
-
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewPatient"><p class="lead"><i class="fas fa-address-card"></i>
-                        Opret profil til en ny kunde</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white"  href="displayJournal.php"><p class="lead"><i class="fas fa-address-book"></i> Find en eksisterende kunde</p></a>
-            </button><br/>
-            <button  type="button" class="btn btn-login float-right">
-                <a class="text-white" href="displayJournal.php"><p class="lead"><i class="fas fa-file-prescription"></i> Opret journal</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="velkommen.php?mode=RegisterNewUser"><p class="lead"><i class="fas fa-user-md"></i> Opret ny admin</p></a>
-            </button><br/>
-            <button type="button" class="btn btn-login float-right">
-                <a class="text-white" href="logout.php"><p class="lead"><i class="fas fa-sign-out-alt"></i> Log ud</p></a>
-            </button>
+            <a class="btn btn-login" href="velkommen.php?mode=RegisterNewPatient">
+                <span class="lead">
+                    <i class="fas fa-address-card"></i>
+                    Opret profil til en ny kunde
+                </span>
+            </a>
+            <br/>
+            <a class="btn btn-login" href="displayJournal.php">
+                <span class="lead">
+                    <i class="fas fa-address-book"></i>
+                    Find en eksisterende kunde
+                </span>
+            </a>
+            <br/>
+            <a class="btn btn-login" href="displayJournal.php">
+                <span class="lead">
+                    <i class="fas fa-file-prescription"></i>
+                    Opret journal
+                </span>
+            </a>
+            <br/>
+            <a class="btn btn-login" href="velkommen.php?mode=RegisterNewUser">
+                <span class="lead">
+                    <i class="fas fa-user-md"></i>
+                    Opret ny admin
+                </span>
+            </a>
+            <br/>
+            <a class="btn btn-login" href="logout.php">
+                <span class="lead">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log ud
+                </span>
+            </a>
         <br/>
         </div>
     </div>
@@ -156,7 +173,7 @@ if (isset($_POST['RegisterNewPatient']))
             }
 
         }else {
-            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='d-block img-fluid'>
+            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='img-fluid'>
 <div class='carousel-caption d-none d-md-block'>
                                         <div class='banner-text'>
                                             <h2>Velkommen til din arkive</h2>

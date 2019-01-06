@@ -1,5 +1,6 @@
 body {
-    background: #32383e /*linear-gradient(to bottom, #FFB88C, #DE6262);
+    background: #32383e
+        /*linear-gradient(to bottom, #FFB88C, #DE6262);
      W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -19,6 +20,15 @@ nav.nav-extended {
     background: #DE6262;
     color: #fff;
     font-weight: 600;
+}
+
+.btn-login:visited {
+    border: 0;
+}
+
+.btn-login:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
 .tabs .tab {
@@ -192,10 +202,8 @@ button:active {
 }
 
 .banner-sec {
-    background-size: cover;
     min-height: 500px;
     border-radius: 0 10px 10px 0;
-    padding: 0;
 }
 
 .carousel-caption {
@@ -243,12 +251,6 @@ button:active {
     margin-right: auto
 }
 
-.btn-login {
-    background: #DE6262;
-    color: #fff;
-    font-weight: 600;
-}
-
 .banner-text {
     width: 70%;
     position: absolute;
@@ -274,6 +276,15 @@ button:active {
 .banner-text p {
     color: #fff;
 }
-.d-block{
+
+.d-block {
     margin-left: -15px;
+}
+
+.btn-group-vertical {
+    width: 100%
+}
+
+.btn-group-vertical a {
+    padding: 15px 0px;
 }

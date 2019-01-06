@@ -31,23 +31,25 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
         <div class='col-sm-3'>
             <br/>
             <div class='btn-group-vertical'>
-
-                <button type='button' class='btn btn-login float-right'>
-                    <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."'  class='btn btn-login'><p class='lead'> Tilføj Billede</p></a>                
-                    </button><br/>
-                <button  type='button' class='btn btn-login float-right'>
-                    <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."'  class='btn btn-login'><p class='lead'>Tilføj Behandling</p></a>                
-                    </button><br/>
-                <button type='button' class='btn btn-login float-right'>
-                    <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."'  class='btn btn-login'><p class='lead'>Rediger profilen</p></a>
-                 </button><br/>
-                <button type='button' class='btn btn-login float-right'>
-                <a href='displayJournal.php?mode=ShowJournal&cpr=" . $encoded. " ' class='btn btn-login'><p class='lead'>Se journal</p></a>
-               </button><br/>
-                <button type='button' class='btn btn-login float-right'>
-                <a href='Pdfconvert.php?cpr=" . $encoded. " ' class='btn btn-login'><p class='lead'>Vis/Download pdf</p></a>
-               </button>
-               
+                <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."' class='btn btn-login'>
+                    <span class='lead'> Tilføj Billede</span>
+                </a>
+                <br/>
+                <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."' class='btn btn-login'>
+                    <span class='lead'>Tilføj Behandling</span>
+                </a>
+                <br/>
+                <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."' class='btn btn-login'>
+                    <span class='lead'>Rediger profilen</spanp>
+                </a>
+                <br/>
+                <a href='displayJournal.php?mode=ShowJournal&cpr=" . $encoded. " ' class='btn btn-login'>
+                    <span class='lead'>Se journal</span>
+                </a>
+                <br/>
+                <a href='Pdfconvert.php?cpr=" . $encoded. "' target='_blank' class='btn btn-login'>
+                    <span class='lead'>Vis/Download pdf</span>
+                </a>
             </div>
         </div>
 

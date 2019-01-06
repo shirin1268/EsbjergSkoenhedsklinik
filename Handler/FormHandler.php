@@ -155,40 +155,54 @@ class FormHandler extends ServerHandler
 
         echo 
         "<div >
-<h4>Det er resultatet af din søgning: </h4>
-            <table>
+            <h4>Det er resultatet af din søgning: </h4>
+            <br>
+            <table class='table table-striped' style='border: 1px solid #dee2e6'>
+            <thead>
                 <tr>
-                <th>Fornavn</th>
-                <th>Efternavn</th>
-                <th>CPR nr.</th>
-                <th>Email</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                    <th>Fornavn</th>
+                    <th>Efternavn</th>
+                    <th>CPR nr.</th>
+                    <th>Email</th>
+                    <th></th>
                 </tr>
-                ";
+            </thead>
+            <tbody>";
+
         foreach ($searchresult as $result) {
             $crypt = new Encryption;
             $encodedcpr=$result['CPR'];
             $decodedcpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
             echo
                 "<tr>
-                    <td><input name='fornavn' value=' ". $result['fornavn'] ." '></td>
-                    <td><input name='efternavn' value=' ". $result['efternavn'] ." '></td>
-                    <td><input name='cpr' value=' ". $decodedcpr . " ' ></td>
-                    <td><input name='email' value=' ". $result['email'] . " ' ></td>
                     <td>
-                    <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-                    <button class='btn'  value='SeeJournal'>Se patient profil</button>
-                    </a>
+                        <input class='form-control' name='fornavn' value='". $result['fornavn'] ."' disabled>
                     </td>
-                    
-                    
+                    <td>
+                        <input class='form-control' name='efternavn' value='". $result['efternavn'] ."' disabled>
+                    </td>
+                    <td>
+                        <input class='form-control' name='cpr' value='". $decodedcpr . "' disabled>
+                    </td>
+                    <td>
+                        <a name='SeeJournal' href='mailto:".$result['email']."'>
+                            <button class='btn btn-info' title='Write an E-Mail'>". $result['email'] ."</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
+                            <button class='btn btn-success' title='Se profil'>Se patient profil</button>
+                        </a>
+                    </td>
                 </tr>";
         }
-        echo "</table>
-     <br><br><hr>
-    </div>";
+
+        echo 
+                "</tbody>
+            </table>
+        <br>
+        <hr>
+        </div>";
     }
 
     public function AddPictureForm($cpr,$navn,$efternavn){
