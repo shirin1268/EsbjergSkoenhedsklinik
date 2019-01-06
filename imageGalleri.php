@@ -5,9 +5,6 @@ include_once "Header.php";
 include_once "menu.php";
 $imgh = new ImageResizer();
 ?>
-
-<div class='row'>
-
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="width: 100%">
     <?php
         $pictures = $imgh->OpenImageGallery();
@@ -46,7 +43,6 @@ $imgh = new ImageResizer();
             <span class="sr-only">Next</span>
         </a>
     </div>
- </div>
 
 <?php
 
