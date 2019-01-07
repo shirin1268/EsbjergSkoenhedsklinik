@@ -185,7 +185,7 @@ class FormHandler extends ServerHandler
                         <input class='form-control' name='cpr' value='". $decodedcpr . "' disabled>
                     </td>
                     <td>
-                        <a name='SeeJournal' href='mailto:".$result['email']."'>
+                        <a name='mailto' href='mailto:".$result['email']."'>
                             <button class='btn btn-info' title='Write an E-Mail'>". $result['email'] ."</button>
                         </a>
                     </td>
@@ -220,7 +220,7 @@ class FormHandler extends ServerHandler
              <input type='date' name='dato' class='form-control' >
            </div><br>
           <div class='form-group col-md-4'>
-             Kategori:
+             Billedekategori:
                 <select class='form-control' name='kategori'>";
         echo $this->readcategory();
         echo "</select>

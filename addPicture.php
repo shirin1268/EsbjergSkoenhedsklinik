@@ -7,6 +7,7 @@ $fh = new FormHandler();
 $sh = new ServerHandler();
 $imgh = new ImageResizer();
 
+$fh->DisplayOpretKategoriForm();
 
 define("MAX_SIZE" , "30000");
 $upmsg = array();
