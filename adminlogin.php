@@ -19,11 +19,14 @@ $page_title = "Admin login";
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title><?php echo $page_title; ?> </title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
         <link rel="stylesheet" href="Css/stylesheet.css" />
+
+        <script src="assets/jquery-3.3.1.min.js"></script>
+        <script src="assets/popper.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
     <div class="container">
