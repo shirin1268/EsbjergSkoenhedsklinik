@@ -276,15 +276,15 @@ class FormHandler extends ServerHandler
         $result=$stmt->get_result();
         $row=mysqli_fetch_array($result);
         $crypt = new Encryption;
-        $encodedcpr=$row['CPR'];
-        $cpr = $crypt->encrypt_decrypt('decrypt',$encodedcpr);
+        $encoded=$row['CPR'];
+        $cpr = $crypt->encrypt_decrypt('decrypt',$encoded);
         echo "
         <form action='' method='post'>
         <h5>Opdater behandlingen til patienten med CPR-nr: <strong>". $cpr."</strong></h5><br>
         <div class='form-row'>
             <div class='form-group col-md-3'>
               CPR:
-              <input type='text'  class='form-control' name='cpr' value='". $cpr."'>
+              <input type='text'  class='form-control' name='patientcpr' value='". $cpr."'>
            </div><br>
              <div class='form-group col-md-3'>
               Behandlingsdato:<br>
@@ -307,10 +307,11 @@ class FormHandler extends ServerHandler
 	       </div><br>
 	   
            <div class='form-row'>
+           <a href='UpdateJournal.php?cpr=" . $encoded. " '>
                   <button onclick='return confirm(\"Er du sikker på at du vil opdatere denne behandling ? \") '
                      class='btn btn-login float-right ' name='UpdateBehandling' value='UpdateBehandling'>
                       Update
-                  </button>
+                  </button></a>
            </div><br>
            </table>
 </form> ";
@@ -359,7 +360,7 @@ class FormHandler extends ServerHandler
            <div class='form-row'>
            <div class='form-group col-md-3'>
            <button class='btn btn-login' name='UpdateImg' value='UpdateImg'>
-                      Opdater billedets oplysninger
+                      Opdater oplysninger
                   </button></div>
                   <div class='form-group col-md-2'>
                   <button class='btn btn-login' 

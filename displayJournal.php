@@ -26,34 +26,7 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
 
     $cpr = $crypt->encrypt_decrypt('decrypt', $encoded);
 
-    echo "
-    <div class='row'>
-        <div class='col-sm-3'>
-            <br/>
-            <div class='btn-group-vertical'>
-                <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'> Tilføj Billede</span>
-                </a>
-                <br/>
-                <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'>Tilføj Behandling</span>
-                </a>
-                <br/>
-                <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'>Rediger profilen</spanp>
-                </a>
-                <br/>
-                <a href='displayJournal.php?mode=ShowJournal&cpr=" . $encoded. " ' class='btn btn-login'>
-                    <span class='lead'>Se journal</span>
-                </a>
-                <br/>
-                <a href='Pdfconvert.php?cpr=" . $encoded. "' target='_blank' class='btn btn-login'>
-                    <span class='lead'>Vis/Download pdf</span>
-                </a>
-            </div>
-        </div>
-
-        <div class='col-md-9'>";
+   include_once "Journalhandlinger.php";
 
 
     $mode = $_GET['mode'];
@@ -111,7 +84,7 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
   <td style='width:15%; font-size:12px'>" . $behandling['dato'] . "</td>   
   <td style='width:50%'>" . $behandling['description'] . "</td>
   <td>" . $behandling['betaling'] . "</td>
-  <td> <a href='displayJournal.php?mode=UpdateBehandling&id=" . $behandling['behandlingID'] . "'>Ret</a> </td>
+  <td> <a href='UpdateJournal.php?mode=UpdateBehandling&id=" . $behandling['behandlingID'] . "&cpr=". $encoded ."'>Ret</a> </td>
 </tr>
  "; }
                echo "
@@ -145,7 +118,7 @@ echo "
 <td style='width:13%'>" . $image['picturekategori'] . "</td>
 <td style='width:50%'><img id='myImg' class='img-thumbnail' src='img/" . $image['picture'] . "' alt='" . $image['picturetitle'] . "'></td>
 <td> " . $image['picturetitle'] . "</td>
-<td><a href='displayJournal.php?mode=UpdatePicture&id=" . $image['pictureID'] . "' >Ret/Slet</a></td>
+<td><a href='UpdateJournal.php?mode=UpdatePicture&id=" . $image['pictureID'] . "&cpr=". $encoded ."' >Ret/Slet</a></td>
  </tr>
 
  ";
@@ -159,75 +132,6 @@ echo "
     ";
            }
        }
-    if ($mode=="UpdateProfile")
-    {
-        $encoded = trim($_GET['cpr']) ;
-
-        $email=$patient["email"];
-        $tel=$patient["tlf"];
-        $alder=$patient["alder"];
-        $køn=$patient["gender"];
-
-        $fh->UpdateProfileForm($cpr,$encoded,$navn,$efternavn,$email,$tel,$alder,$køn);
-
-    }elseif ($mode == "UpdateBehandling")
-    {
-        $id = trim($_GET['id']);
-        $fh->UpdateBehandlingForm($id);
-
-        if (isset($_POST["UpdateBehandling"]))
-        {
-            $connection = $sh->dbConnect();
-            $behandlingname =ValidateHandler::validinput($_POST["behandlingname"],$connection);
-            $betaling =ValidateHandler::validinput( $_POST["betaling"],$connection);
-            $description =ValidateHandler::validinput($_POST["description"],$connection) ;
-            $dato = $_POST["dato"];
-            $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
-            $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
-
-            if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
-            {
-                echo "<div class='alert alert-success'>Updated.<a href=". htmlspecialchars($previous_page). ">  Return</a></div>";
-            } else {
-                echo "<div class='alert alert-danger'>Unable to update.<a href=". htmlspecialchars($previous_page). ">  Return</a></div>";
-            }
-        }
-    } elseif ($mode == "UpdatePicture")
-    {
-        $id = trim($_GET['id']);
-        $fh->UpdatePictureForm($id);
-
-        if (isset($_POST["UpdateImg"]))
-        {
-            $connection = $sh->dbConnect();
-            $kategori = ValidateHandler::validinput($_POST['kategori'], $connection);
-            $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
-            $dato = ValidateHandler::validinput($_POST['dato'],$connection);
-            $title = ValidateHandler::validinput($_POST['title'], $connection);
-            $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
-
-            if ($jh->UpdatePicture($id, $kategori, $encoded, $dato, $title) == true)
-            {
-
-                       echo "<div class='alert alert-success'>Image information updated!.
-                             <a href=". htmlspecialchars($previous_page). ">Return</a></div>";
-                   } else {
-                       echo "<div class='alert alert-danger'>Unable to update image information.
-                              <a href=". htmlspecialchars($previous_page). ">Return</a></div>";
-                   }
-        }
-        elseif (isset($_POST["DeleteImg"]))
-        {
-                   $id = trim($_GET['id']);
-                   if ($jh->DeletePicture($id) == true)
-                   {
-                       echo "<div class='alert alert-success'>Billedet er slettet.<a href=". htmlspecialchars($previous_page). ">Return</a></div>";
-                   } else {
-                       echo "<div class='alert alert-danger'>Det er ikke muligt at slette billedet!.<a href=". htmlspecialchars($previous_page). ">Return</a></div>";
-                   }
-
-        }
-    }
 
 
 }
