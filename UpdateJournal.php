@@ -47,8 +47,8 @@ if (isset($_GET['mode'])) {
         $betaling =ValidateHandler::validinput( $_POST["betaling"],$connection);
         $description =ValidateHandler::validinput($_POST["description"],$connection) ;
         $dato = $_POST["dato"];
-        $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]) ;
-        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
+        $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["patientcpr"]) ;
+        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" .$encoded;
 
         if ($jh->UpdateBehandling($id, $behandlingname, $description, $dato, $betaling, $encoded) == true)
         {
@@ -69,7 +69,7 @@ if (isset($_GET['mode'])) {
         $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
         $dato = ValidateHandler::validinput($_POST['dato'],$connection);
         $title = ValidateHandler::validinput($_POST['title'], $connection);
-        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $encoded;
+        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" .$encoded;
 
         if ($jh->UpdatePicture($id, $kategori, $encoded, $dato, $title) == true)
         {
@@ -84,6 +84,8 @@ if (isset($_GET['mode'])) {
     elseif (isset($_POST["DeleteImg"]))
     {
         $id = trim($_GET['id']);
+        $encoded =$crypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
+        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" .$encoded;
         if ($jh->DeletePicture($id) == true)
         {
             echo "<div class='alert alert-success'>Billedet er slettet.<a href=". htmlspecialchars($previous_page). ">Return</a></div>";

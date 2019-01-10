@@ -16,7 +16,7 @@ class AdminHandler extends ServerHandler
             while ($row = mysqli_fetch_assoc($result))
                 if ($row["Adminlevel"] == "owner"|| $row["Adminlevel"] == "administrator")
                 {
-                    echo "<h2 class='float-left'>Velkommen <br> " . $_SESSION['fornavn'] ."</h2>";
+                    echo "<h2 class='float-left' style='color: #17a2b8'>Velkommen <br> " . $_SESSION['fornavn'] ."</h2>";
                 }
         }else {
             redirect_to("adminlogin.php");

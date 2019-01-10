@@ -19,7 +19,7 @@ echo "
                     <span class='lead'>Tilføj Behandling</span>
                 </a>
                 <br/>
-                <a href='displayJournal.php?mode=UpdateProfile&cpr=".$encoded."' class='btn btn-login'>
+                <a href='UpdateJournal.php?mode=UpdateProfile&cpr=".$encoded."' class='btn btn-login'>
                     <span class='lead'>Rediger profilen</spanp>
                 </a>
                 <br/>

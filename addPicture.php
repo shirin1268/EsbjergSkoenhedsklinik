@@ -7,7 +7,7 @@ $fh = new FormHandler();
 $sh = new ServerHandler();
 $imgh = new ImageResizer();
 
-$fh->DisplayOpretKategoriForm();
+
 
 define("MAX_SIZE" , "30000");
 $upmsg = array();
@@ -50,6 +50,7 @@ if(isset($_POST['UploadImg'])) {
             $cpr = $encrypt->encrypt_decrypt('encrypt',$_POST['cpr']);
             $dato=$_POST['dato'];
             $title = ValidateHandler::validinput($_POST['title'], $connection);
+            $previous_page="displayJournal.php?mode=ShowJournal&cpr=" . $cpr;
            if( $imgh->UploadPicture($iName, $kategoriname, $cpr, $dato, $title)==true){
 
             array_push($upmsg, "image uploaded!");
@@ -59,7 +60,7 @@ if(isset($_POST['UploadImg'])) {
 }
 
 foreach($upmsg as $msg){
-    echo "<div class='alert alert-secondary'>$msg</div>";
+    echo "<div class='alert alert-secondary'>".$msg. "<a href=". htmlspecialchars($previous_page). ">  Return</a></div>";
 }
 
 
@@ -71,6 +72,7 @@ if (isset($_POST['CreateKategori']))
     {
         $connection= $sh ->dbConnect();
         $kategori = ValidateHandler::validinput($_POST["kategori"],$connection);
+
 
         if($imgh->createImgKategori($kategori)==true){
             echo "<div class='alert alert-success'>New category was created.</div>";

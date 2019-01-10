@@ -191,7 +191,7 @@ class FormHandler extends ServerHandler
                     </td>
                     <td>
                         <a name='SeeJournal' href='displayJournal.php?mode=ShowJournal&cpr=" . $result['CPR']. " '>
-                            <button class='btn btn-success' title='Se profil'>Se patient profil</button>
+                            <button class='btn btn-login' title='Se profil'>Se patient profil</button>
                         </a>
                     </td>
                 </tr>";
@@ -208,7 +208,7 @@ class FormHandler extends ServerHandler
     public function AddPictureForm($cpr,$navn,$efternavn){
         echo "
         <form action='addPicture.php' method='post' enctype='multipart/form-data'>
-        <h4>Tilføj billeder til:"." <strong style='color:#DE6262'>" .$navn ." ".$efternavn. "</strong> journal</h4><br>
+        <h4>Tilføj billeder til:"." <strong style='color:#17a2b8'>" .$navn ." ".$efternavn. "</strong> journal</h4><br>
             <div class='form-row'>
             <div class='form-group col-md-4'>
               CPR:
@@ -280,7 +280,7 @@ class FormHandler extends ServerHandler
         $cpr = $crypt->encrypt_decrypt('decrypt',$encoded);
         echo "
         <form action='' method='post'>
-        <h5>Opdater behandlingen til patienten med CPR-nr: <strong>". $cpr."</strong></h5><br>
+        <h5>Opdater behandlingen til patienten med CPR-nr: <strong style='color:#DE6262'>". $cpr."</strong></h5><br>
         <div class='form-row'>
             <div class='form-group col-md-3'>
               CPR:
@@ -307,11 +307,11 @@ class FormHandler extends ServerHandler
 	       </div><br>
 	   
            <div class='form-row'>
-           <a href='UpdateJournal.php?cpr=" . $encoded. " '>
+          
                   <button onclick='return confirm(\"Er du sikker på at du vil opdatere denne behandling ? \") '
                      class='btn btn-login float-right ' name='UpdateBehandling' value='UpdateBehandling'>
                       Update
-                  </button></a>
+                  </button>
            </div><br>
            </table>
 </form> ";
@@ -376,7 +376,7 @@ class FormHandler extends ServerHandler
     echo "
 
     <form id='createJ' action='createJournal.php' method='post'>
-        <h4>Opret journal til:"." " .$navn ." ".$efternavn."</h4>
+        <h4>Opret journal til:"."<strong style='color:#17a2b8'> " .$navn ." ".$efternavn."</strong></h4>
         <div class='form-row'>
             <div class='form-group col-md-4'>
         CPR nummer: 
@@ -432,7 +432,7 @@ echo "
         echo "
 <div class='col-md-auto' style='min-width: 80%'>
     <form id='createJ' action='createJournal.php?&cpr=".$encoded."' method='post'>
-        <h4>Rediger profilen til:"." " .$navn ." ".$efternavn."</h4>
+        <h4>Rediger profilen til:"."<strong style='color:#17a2b8'> " .$navn ." ".$efternavn."</strong> </h4>
 
 				<div class='form-row'>
 				<div class='form-group col-md-6'>

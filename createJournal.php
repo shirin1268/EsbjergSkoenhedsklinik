@@ -24,10 +24,13 @@ if (isset($_POST['CreateJournal']))
         $betaling =ValidateHandler::validinput($_POST["betaling"],$connection);
         $dato=ValidateHandler::validinput($_POST['dato'],$connection);
         $cpr = $encrypt->encrypt_decrypt('encrypt',trim($_POST["cpr"]));
+
+        $previous_page="displayJournal.php?mode=ShowJournal&cpr=" .$cpr;
+
         if($jh->createJournal($behandlingname,$description,$dato,$betaling,$cpr)==true)
         {
             echo '<div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
-                Journal was created.
+                Journal was created.<a href="'.htmlspecialchars($previous_page).' ">  Return</a>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -35,7 +38,7 @@ if (isset($_POST['CreateJournal']))
         }
         else{
             echo '<div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
-                Unable to create Journal.
+                Unable to create Journal.<a href="'.htmlspecialchars($previous_page).' ">  Return</a>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
