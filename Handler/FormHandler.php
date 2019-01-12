@@ -196,11 +196,10 @@ class FormHandler extends ServerHandler
                     </td>
                 </tr>";
         }
-
         echo 
                 "</tbody>
             </table>
-        <br>
+        
         <hr>
         </div>";
     }

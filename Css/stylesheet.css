@@ -81,7 +81,7 @@ nav ul li {
 }
 
 .table-warning>th {
-    background-color: #FFB88C;
+    background-color: #d1ecf1;
 }
 
 .right-button-margin {
@@ -134,7 +134,7 @@ hr {
 .table-warning,
 .table-warning>td,
 .table-warning>th {
-    background-color: #FFB88C;
+    background-color: #d1ecf1;
 }
 
 .card {

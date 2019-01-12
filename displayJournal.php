@@ -9,11 +9,11 @@ $jh = new JournalHandler();
 $crypt = new Encryption;
 
 if (!isset($_GET['mode'])) {
-    echo "<div class='alert alert-secondary' role='alert' style='width: 50%; margin: auto; text-align: center '>
-<br><h4 class='alert-heading'>Du skal lede efter patienten først!</h4>
+    echo "<div class='alert alert-info' role='alert' style='width: 50%; margin: auto; text-align: center '>
+<br><h4 class='alert-heading' style='color: #DE6262; font-size: 2rem'>Du skal lede efter patienten først!</h4>
 <hr>
 <p class='mb-0'>
-<strong>Find patienten</strong> via <strong>søgfeltet</strong> hver gang du vil <strong>oprette</strong> ny journal eller <strong>
+<strong style='font-size: 2rem'>Find patienten</strong> via <strong>søgfeltet</strong> hver gang du vil <strong>oprette</strong> ny journal eller <strong>
 se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</strong>
     </p><br><br>
     </div>
@@ -51,11 +51,11 @@ se/opdater</strong> en eksisterende journal eller<strong> tilføje billede</stro
                echo "
 <table class='table'>
    <tr class='table-warning'>
-       <th scope='row'>Patientsnavn: </th>
-       <th scope='row'>Tel: </th> 
-       <th scope='row'>Email: </th>
-       <th scope='row'>Alder: </th>
-       <th scope='row'>CPR nummer: </th>
+       <th scope='row'>Patientsnavn </th>
+       <th scope='row'>Tel </th> 
+       <th scope='row'>Email </th>
+       <th scope='row'>Alder </th>
+       <th scope='row'>CPR nummer </th>
     </tr>
     <tr class='shadow p-3 mb-5 bg-white rounded'>
      <td style='text-transform:capitalize'><strong>  " . $name['fornavn'] . "  ".$name['efternavn'] . "</strong></td>
