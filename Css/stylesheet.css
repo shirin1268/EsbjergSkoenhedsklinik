@@ -95,7 +95,7 @@ nav ul li {
 }
 
 .col-md-4 #logo {
-    width: 70%;
+    width: 30%;
     float: right;
 }
 
@@ -214,6 +214,11 @@ button:active {
     padding: 50px 30px;
     position: relative;
 }
+ #admin-logo{
+    margin-left:8%;
+    width: 15%;
+    height: auto;
+}
 
 .login-sec .copy-text {
     position: absolute;
@@ -242,7 +247,7 @@ button:active {
     content: " ";
     width: 100px;
     height: 5px;
-    background: #FEB58A;
+    background: #DE6262;
     display: block;
     margin-top: 20px;
     border-radius: 3px;

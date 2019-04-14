@@ -38,7 +38,7 @@ if($behandlinger>0) {
         $pdf->PrintChapter('Billedets oplysninger',$image['picturekategori'],$image['dato'], $image['picturetitle']);
         $pdf->Image('img/'.$image['picture'] );
         $pdf->Ln();
-
-
-
-}}}$pdf->Output();
+    }
+    }
+}
+$pdf->Output();

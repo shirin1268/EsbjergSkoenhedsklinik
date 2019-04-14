@@ -68,65 +68,45 @@ if (isset($_POST['RegisterNewPatient']))
             $encrypt = new Encryption();
         $cpr =$encrypt->encrypt_decrypt('encrypt',$_POST["cpr"]);
 
-        if( $pa->RegisterNewPatient($fornavn ,$efternavn , $email, $tlf , $cpr, $alder, $gender)==true)
+            if( $pa->RegisterNewPatient($fornavn ,$efternavn , $email, $tlf , $cpr, $alder, $gender)==true)
         {
             echo "<div class='alert alert-success'><strong>Fint! </strong> ny patientprofil er oprettet.</div>";
         }
         else{
             echo "<div class='alert alert-danger'><strong>Beklager!</strong> Det er ikke muligt at oprette profil til denne patient.</div>";
         }
-
         }
     else
         {
         echo "<div class='alert alert-danger'>Det <strong>CPR-nr</strong> ligner ikke et rigtig CPR-nr!!!!:<strong> ".$_POST["cpr"]. "</strong></div>";
         }
     }
-
 }
-
 ?>
-
 
 <div class="row">
     <div class="col-sm-4">
-        <br/>
         <div class="btn-group-vertical">
             <a class="btn btn-login" href="velkommen.php?mode=RegisterNewPatient">
-                <span class="lead">
                     <i class="fas fa-address-card"></i>
                     Opret profil til en ny kunde
-                </span>
-            </a>
-            <br/>
+            </a><br/>
             <a class="btn btn-login" href="displayJournal.php">
-                <span class="lead">
                     <i class="fas fa-address-book"></i>
                     Find en eksisterende kunde
-                </span>
-            </a>
-            <br/>
+            </a><br/>
             <a class="btn btn-login" href="displayJournal.php">
-                <span class="lead">
                     <i class="fas fa-file-prescription"></i>
                     Opret journal
-                </span>
-            </a>
-            <br/>
+            </a><br/>
             <a class="btn btn-login" href="velkommen.php?mode=RegisterNewUser">
-                <span class="lead">
                     <i class="fas fa-user-md"></i>
                     Opret ny admin
-                </span>
-            </a>
-            <br/>
+            </a><br/>
             <a class="btn btn-login" href="logout.php">
-                <span class="lead">
                     <i class="fas fa-sign-out-alt"></i>
                     Log ud
-                </span>
-            </a>
-        <br/>
+            </a><br/>
         </div>
     </div>
 
@@ -173,13 +153,12 @@ if (isset($_POST['RegisterNewPatient']))
             }
 
         }else {
-            echo "<img src='img/Mesotherapy-needle-injection-2.jpg' class='img-fluid'>
-<div class='carousel-caption d-none d-md-block'>
+            echo "<div class='carousel'><img src='img/Mesotherapy-needle-injection-2.jpg' class='img-fluid'>
+
                                         <div class='banner-text'>
                                             <h2>Velkommen til din arkive</h2>
                                             <p>I menuen på højre side har du flere muligheder for at vælge imellem. Er det ny patient der skal registreres eller 
-                                            en eksisterende patient som du skal finde og se journalen. Efter oprettelse af nye patient har du mulighed også for 
-                                            at oprette journal for vedkommende eller for en eksisterende patient.
+                                            en eksisterende patient som du skal finde og se/oprette journalen. 
                                             Ligeledes kan du som ejern oprette en ny admin til systemet. 
                                             </p>
                                         </div>

@@ -12,23 +12,23 @@ echo "
             <br/>
             <div class='btn-group-vertical'>
                 <a href='displayJournal.php?mode=AddPicture&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'> Tilføj Billede</span>
+                     Tilføj Billede
                 </a>
                 <br/>
                 <a href='displayJournal.php?mode=OpretJournal&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'>Tilføj Behandling</span>
+                    Tilføj Behandling
                 </a>
                 <br/>
                 <a href='UpdateJournal.php?mode=UpdateProfile&cpr=".$encoded."' class='btn btn-login'>
-                    <span class='lead'>Rediger profilen</spanp>
+                    Rediger profilen
                 </a>
                 <br/>
                 <a href='displayJournal.php?mode=ShowJournal&cpr=" . $encoded. " ' class='btn btn-login'>
-                    <span class='lead'>Se journal</span>
+                    Se journal
                 </a>
                 <br/>
                 <a href='Pdfconvert.php?cpr=" . $encoded. "' target='_blank' class='btn btn-login'>
-                    <span class='lead'>Vis/Download pdf</span>
+                    Vis/Download pdf
                 </a>
             </div>
         </div>

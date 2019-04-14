@@ -12,8 +12,6 @@ class JournalHandler extends ServerHandler
     public $description;
     public $cpr;
 
-
-
     function createJournal($behandlingname,$description,$dato ,$betaling,$cpr)
     {
         $connection = $this->dbConnect();
@@ -48,7 +46,6 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
 
         return $row ;
     }
-
     function displaypatientname($encoded)
     {
         $connection = $this->dbConnect();
@@ -63,8 +60,6 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
 
         return $row ;
     }
-
-
     function displayPictures($encoded)
     {
         $connection = $this->dbConnect();
@@ -93,7 +88,6 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
             return false;
         }
     }
-
     function UpdatePicture($id,$kategori, $cpr, $dato, $title)
     {
         $connection = $this->dbConnect();
@@ -109,7 +103,6 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
             return false;
         }
     }
-
     function DeletePicture($id)
     {
         $connection = $this->dbConnect();
@@ -122,8 +115,7 @@ INNER JOIN `behandling` ON `patient`.`CPR`= `behandling`.`CPR`
             return false;
         }
     }
-
-    public function UpdatePatientProfile($fornavn ,$efternavn , $email, $tlf , $cpr,$newcpr, $alder, $gender){
+    function UpdatePatientProfile($fornavn ,$efternavn , $email, $tlf , $cpr,$newcpr, $alder, $gender){
         $connection = $this->dbConnect();
         $sql="UPDATE `patient` 
 SET `fornavn`=?,`efternavn`=?,`email`=?,

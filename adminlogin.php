@@ -31,14 +31,16 @@ $page_title = "Admin login";
     <body>
     <div class="container">
         <div class="row align-items-center" id="header">
-            <div class="row-header">
-                <img class="img" id='logo' src='img/logo-3.png'>
-            </div>
-    <section class="login-block">
 
+    <section class="login-block">
+        <img id="admin-logo" src='img/logo-final-blue.png'>
+
+        <br><br>
                 <div class="row">
                     <div class="col-md-4 login-sec">
-                        <h2 class="text-center">Login Now</h2>
+
+
+                        <h2 class="text-center" style="color: #578f9d">Login Now</h2>
                         <form class="login-form" action="adminlogin.php " method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="text-uppercase">Username</label>

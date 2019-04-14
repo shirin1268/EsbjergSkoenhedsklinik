@@ -44,7 +44,7 @@ $ah = new AdminHandler();
                 </p>
             </div>
             <div class="col-md-4">
-                <img class="img" id='logo' src='img/logo-3.png'>
+                <img class="img" id='logo' src='img/logo-final-blue.png'>
             </div>
         </div>
         <?php

@@ -11,7 +11,7 @@ class FormHandler extends ServerHandler
     public function DisplayRegisterUserForm()
     {
 
-        echo "<p class='display-4'>Registrer en ny Admin</p>
+        echo "<h4>Registrer en ny Admin</h4>
 
 			<form  action='' method='post'' >
 			    <div class='form-row'>
@@ -56,7 +56,7 @@ class FormHandler extends ServerHandler
         echo "
 <div class='col-md-auto' style='min-width: 80%'>
     <form id='createJ' action='' method='post'>
-        <p class='display-4'>Opret profile til ny kunde</p>
+        <h4>Opret profile til ny kunde</h4>
 
 				<div class='form-row'>
 				<div class='form-group col-md-6'>
